@@ -51,7 +51,7 @@ var isLogin = function(req,res,next)
         res.redirect("/logowanie");
     }
 }
-//app.use sekcja dodawanie funkcji to serwera
+//app.use sekcja dodawanie funkcji do serwera
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 900000 } }));
 app.use(express.static(path.join(__dirname, 'public')));
