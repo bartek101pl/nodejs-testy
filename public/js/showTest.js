@@ -72,6 +72,7 @@ function addPytanie(aPytanie)
    let o = '<div class="pytanieBody ">';
        o+= '<div class="pytanie_nuber">Pytanie nr&nbsp;<b class="numer">'+aPytanie.nrP+'</b>&nbsp;z&nbsp;<b>'+testData.iloscPytan+'</b></div><div class="pytanie_tr">';
        o+=aPytanie.pytanie+"</div>"
+      
        if(aPytanie.img != null)
        o+="<div style='text-align: center;'><img src='"+aPytanie.img+"'  width='"+aPytanie.imgW+"' height='"+aPytanie.imgH+"' class='pytanie_img'></div>";
         o+='<div class="pytania_box"><ol>';      
@@ -79,7 +80,8 @@ function addPytanie(aPytanie)
         o+='<li><label><input type="radio" class="odp2" disabled>'+aPytanie.odpB+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
-        o+='</ol></div></div>';
+        o+='</ol></div>';
+        o+='<button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><button class="button_to_do" style="margin-bottom:20px;">Usuń</button></div>';
         
         contenerr.innerHTML+=o;
 }

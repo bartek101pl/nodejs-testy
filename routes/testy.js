@@ -23,6 +23,12 @@ const con = mysql.createConnection({
 router.get("/testy/tworzenie/test",function(req,res,next){
     res.render("tworzenieT")
 })
+router.get("/testy/edycja/test",function(req,res,next){
+    res.render("editTest")
+})
+router.get("/testy/edycja/pytanie",function(req,res,next){
+    res.render("editPytanie")
+})
 router.get("/testy/tworzenie/pytanie",function(req,res,next){
     console.log("działa22");
 })
