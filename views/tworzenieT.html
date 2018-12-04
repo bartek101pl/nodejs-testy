@@ -1,0 +1,59 @@
+<!--Copyright 2018 BŚ-->
+<html lang="pl">
+    <head>
+        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Tworzenie testu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/js/cTest.js"></script>
+    </head>
+    <body>
+        <div class="body disable">
+            <div class="menu">
+                <a id="to_check" class="button_to_do" href="/ustawienia" >Ustawienia</a>
+                <a id="to_check" class="button_to_do" href="/testy">Testy</a>
+                <a id="to_check" class="button_to_do" href="/testy/tworzenie/test">Stwórz test</a>
+                <a id="to_check" class="button_to_do" href="/testy/tworzenie/pytanie">Dodaj Pytanie</a>
+                <a id="to_check" class="button_to_do" href="/testy/aktualny">Aktuany test</a>
+                <a id="to_check" class="button_to_do" href='/test/rozpoczynanie'>Rozpocznij test</a>
+                <a id="to_check" class="button_to_do" href="/test/wyniki/archiwum">Archiwum testów</a>
+                <a id="to_check" class="button_to_do" >Wyloguj</a>
+                <div style="clear:both"></div>
+            </div>
+            <div class="cTest">
+                <div class="titleC">Tworzenie testu</div>
+                <hr>
+                <div class="content">
+                    <input type="text" id="nazwaT"   maxlength="40" placeholder="Nazwa testu">
+                    <input type="text" id="iloscT"  maxlength="2" placeholder="Iloć pytań">
+                    <input type="text" id="klasaT"   placeholder="Klasa 1-4">
+                    <input type="button" id="utworz" placeholder="" value="Utwórz">
+                    <hr>
+                    <div style="font-size:40px; text-align:center;">Stworzone Testy</div>
+                    <table style="width:100%; background-color: #C3D1A3;" border="solid" padding="5px;">
+                        
+                        <thead>
+                            <tr>
+                                <td style="width:5%;">Lp.</td>
+                                <td style="width:30%;">Nazwa</td>
+                                <td style="width:5%;">Iloć pytań</td>
+                                <td style="width:1%;">Klasa</td>
+                                <td style="width:10%;">Data utworzenia</td>
+                                <td style="width:20%;" colspan="4" style="text-align:center;">Opcje</td>
+                            </tr>
+                        </thead>
+                        <tbody id="testTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>  
+        </div>
+  
+ <div class="background " ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div  class="backgroundTekst">Wczytywanie danych</div>
+    </div>   
+</body>
+</html>
