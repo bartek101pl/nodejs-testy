@@ -50,7 +50,7 @@ async function downloadData()
             
             for(let a = 0;a<data.length;a++)
             {
-                pytan = pytania.push(new pytanie(a+1,data[a].tresc,data[a].odpA,data[a].odpB,data[a].odpC,data[a].odpD,data[a].imgSrc,data[a].poprawna));
+                pytan = pytania.push(new pytanie(a+1,data[a].tresc,data[a].odpA,data[a].odpB,data[a].odpC,data[a].odpD,data[a].imgSrc,data[a].poprawna,data[a].imgW,data[a].imgH));
             }
             
     }).then(()=>{
@@ -81,7 +81,7 @@ function addPytanie(aPytanie)
         o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
         o+='</ol></div>';
-        o+='<button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><button class="button_to_do" style="margin-bottom:20px;">Usuń</button></div>';
+        o+='<form action="/testy/edycja/pytanie" method="GET"><button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><input type="number" name="id" value="'+aPytanie.id+'" style="display:none"></form><button class="button_to_do" style="margin-bottom:20px;">Usuń</button></div>';
         
         contenerr.innerHTML+=o;
 }

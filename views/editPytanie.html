@@ -6,20 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
-        <script type="text/javascript" src="/js/pytanieClass.js"></script>
+        <script src="/js/pytanieClass.js"></script>
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/js/editpytanie.js"></script>
         
     </head>
     <body>
         
-        <div class="body " >
-            <div id="contener">
-            <textarea class="textareaEdit" placeholder="Pytanie testu"></textarea>
-            <button class="button_to_do" style="margin-top:1vw;margin-bottom:1vw;">Zmień poprawną odpowiedz</button>
-            <textarea class="inputedit" placeholder="Odpowiedz 1"></textarea>
-            <textarea class="inputedit" placeholder="Odpowiedz 2"></textarea>
-            <textarea class="inputedit" placeholder="Odpowiedz 3"></textarea>
-            <textarea class="inputedit" placeholder="Odpowiedz 4"></textarea>  
+        <div class="body disable" >
+                <div class="titleC">Edycja pytania</div>
+                <hr>
+            <div id="contener ">
+            <textarea class="textareaEdit" id="pytanie" placeholder="Pytanie testu"></textarea>
+            <button class="button_to_do" id="zmiana"style="margin-top:1vw;margin-bottom:1vw;">Zmień poprawną odpowiedz</button>
+            <textarea class="inputedit " id="p1" placeholder="Odpowiedz 1"></textarea>
+            <textarea class="inputedit " id="p2" placeholder="Odpowiedz 2"></textarea>
+            <textarea class="inputedit" id="p3" placeholder="Odpowiedz 3"></textarea>
+            <textarea class="inputedit" id="p4" placeholder="Odpowiedz 4"></textarea>  
             <button class="button_to_do">Zapisz</button>
             <button class="button_to_do">Anuluj</button>
             <button class="button_to_do">Usuń</button>
@@ -28,7 +31,7 @@
         
         <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
         </div>
-        <div class="background disable" ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div class="background " ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div  class="backgroundTekst">Wczytywanie danych</div>
     </div>
     

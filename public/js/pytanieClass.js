@@ -13,5 +13,7 @@ class pytanie{
        this.imgW = imgW;
        this.imgH =imgH;
     }
+   
     
 }
+

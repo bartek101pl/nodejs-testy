@@ -1,4 +1,5 @@
 //@Copyright 2018 BŚ
+
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
@@ -92,7 +93,7 @@ router.post("/testy/addTest",function(req,res){
         con.query(qery, function (err, result, fields) {
             if (err) throw err;
             {
-                console.log(result);
+                //console.log(result);
                 res.json(result);
             }
     
@@ -110,7 +111,18 @@ router.post("/testy/addTest",function(req,res){
             }
     
         });
-        }
+        }else if((req.body.idPP)&&(req.body.idPP != ""))
+        {
+            qery = "SELECT * FROM `pytania` WHERE `id`='"+req.body.idPP+"'";
+            //console.log(qery);
+        con.query(qery, function (err, result, fields) {
+            if (err) throw err;
+            {
+                //console.log(result);
+                res.json(result);
+            }
+        });
+    }
         
         
     });
