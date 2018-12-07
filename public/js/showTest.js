@@ -50,7 +50,7 @@ async function downloadData()
             
             for(let a = 0;a<data.length;a++)
             {
-                pytan = pytania.push(new pytanie(a+1,data[a].tresc,data[a].odpA,data[a].odpB,data[a].odpC,data[a].odpD,data[a].imgSrc,data[a].poprawna,data[a].imgW,data[a].imgH));
+                pytan = pytania.push(new pytanie(data[a].id,a+1,data[a].tresc,data[a].odpA,data[a].odpB,data[a].odpC,data[a].odpD,data[a].imgSrc,data[a].poprawna,data[a].imgW,data[a].imgH));
             }
             
     }).then(()=>{

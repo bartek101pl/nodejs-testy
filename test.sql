@@ -36,7 +36,7 @@ CREATE TABLE `opcje` (
   `content` text NOT NULL,
   `stworzyl` text NOT NULL,
   `aktywna` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB ;
 
 --
 -- Zrzut danych tabeli `opcje`
@@ -63,7 +63,7 @@ CREATE TABLE `pytania` (
   `imgSrc` text,
   `imgW` float DEFAULT NULL,
   `imgH` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB ;
 
 --
 -- Zrzut danych tabeli `pytania`
@@ -105,7 +105,7 @@ CREATE TABLE `testy` (
   `iloscPytan` int(11) NOT NULL,
   `klasa` text NOT NULL,
   `data` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB ;
 
 --
 -- Zrzut danych tabeli `testy`

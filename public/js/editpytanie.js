@@ -117,7 +117,7 @@ $.post("/testy/pobieranie/bazadanych",{idPP: id},function(data,status){
     for(let aa = 0;a<data.length;a++)
     {
         
-        pytania =new pytanie(1,data[aa].tresc,data[aa].odpA,data[aa].odpB,data[aa].odpC,data[aa].odpD,data[aa].imgSrc,data[aa].poprawna,data[aa].imgW,data[aa].imgH);
+        pytania =new pytanie(data[aa].id,1,data[aa].tresc,data[aa].odpA,data[aa].odpB,data[aa].odpC,data[aa].odpD,data[aa].imgSrc,data[aa].poprawna,data[aa].imgW,data[aa].imgH);
         
     }
                // console.log(pytania);
