@@ -24,16 +24,36 @@ function sleep (time) {
     return parms;
 }
 let id;
+let id_T;
 let zz = false;
 let a =0;
 let pytania ;
 window.onload = function(){
-let pytaniee = document.getElementById("pytanie");
-let p1 = document.getElementById("p1");
-let p2 = document.getElementById("p2");
-let p3 = document.getElementById("p3");
-let p4 = document.getElementById("p4");
-let zmian = document.getElementById("zmiana");
+    const el =  parseURLParams(window.location.href)
+ id = el.id[0];
+const pytaniee = document.getElementById("pytanie");
+const p1 = document.getElementById("p1");
+const p2 = document.getElementById("p2");
+const p3 = document.getElementById("p3");
+const p4 = document.getElementById("p4");
+const zmian = document.getElementById("zmiana");
+$("#cancle").on("click",function(){
+    window.location.href = "/testy/widok?id="+id_T;
+})
+$("#save").on("click",function(){
+    let query = "UPDATE `pytania` SET `tresc` ='"+pytaniee.value+"', `odpA` ='"+p1.value+"', `odpB` ='"+p2.value+"', `odpC` ='"+p3.value+"', `odpD` ='"+p4.value+"', `poprawna` = '"+a+"' WHERE `pytania`.`id` = "+id+";"
+    console.log(query);
+     $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
+                if(data.status =="true")
+                {
+                    
+                    new Promise(()=>{alert("Pytanie zostało pomyślnie zapisane : "+data.data);}); 
+                }
+                //console.log(data);
+            } ).then(()=>{
+                window.location.href = "/testy/widok?id="+id_T;
+            });
+});
 zmian.addEventListener("click",function(){
 zz = true;
 });
@@ -49,7 +69,7 @@ p1.addEventListener('click',function(){
         p1.classList.toggle("select");
         a=1;
         zz=false;
-        alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
+        //alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
         zmian.classList.toggle("editTable");
     }
     
@@ -66,13 +86,13 @@ p2.addEventListener('click',function(){
         p2.classList.toggle("select");
         a=2;
         zz=false;
-        alert("Zmineiono poprawną odpowiedz na odpowiedz 2.")
+       // alert("Zmineiono poprawną odpowiedz na odpowiedz 2.")
         zmian.classList.toggle("editTable");
     }
     
 })
 p3.addEventListener('click',function(){
-    if((zz)&&(a!=2)){
+    if((zz)&&(a!=3)){
         switch(a)
         {
             case 1: p1.classList.remove("select");break;
@@ -83,13 +103,13 @@ p3.addEventListener('click',function(){
         p3.classList.toggle("select");
         a=3;
         zz=false;
-        alert("Zmineiono poprawną odpowiedz na odpowiedz 3.")
+       // alert("Zmineiono poprawną odpowiedz na odpowiedz 3.")
         zmian.classList.toggle("editTable");
     }
     
 })
 p4.addEventListener('click',function(){
-    if((zz)&&(a!=2)){
+    if((zz)&&(a!=4)){
         switch(a)
         {
             case 1: p1.classList.remove("select");break;
@@ -100,14 +120,12 @@ p4.addEventListener('click',function(){
         p4.classList.toggle("select");
         a=4;
         zz=false;
-        alert("Zmineiono poprawną odpowiedz na odpowiedz 4.")
+     //   alert("Zmineiono poprawną odpowiedz na odpowiedz 4.")
         zmian.classList.toggle("editTable");
     }
     
 })
 
-const el =  parseURLParams(window.location.href)
- id = el.id[0];
 
 // pytania =new pytanie(1,"1231@","1231@#","!2312312","123123123123","1231231231","1231231231@","3");
 $.post("/testy/pobieranie/bazadanych",{idPP: id},function(data,status){
@@ -116,7 +134,7 @@ $.post("/testy/pobieranie/bazadanych",{idPP: id},function(data,status){
         
     for(let aa = 0;a<data.length;a++)
     {
-        
+        id_T = data[aa].idtestu;
         pytania =new pytanie(data[aa].id,1,data[aa].tresc,data[aa].odpA,data[aa].odpB,data[aa].odpC,data[aa].odpD,data[aa].imgSrc,data[aa].poprawna,data[aa].imgW,data[aa].imgH);
         
     }
