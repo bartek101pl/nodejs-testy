@@ -7,22 +7,34 @@ let klasUU;
 let testData;
 let pytan;
 let pytania = [];
-window.onload = function(){
+let ae = false;
+window.onload =  function(){
     titlee = document.getElementById("temat");
     dataUU = document.getElementById("dataU");
     contenerr = document.getElementById("contener");
     klasUU = document.getElementById("klasU");
     dataUrl = parseURLParams(window.location.href);
+    let inputforID = document.getElementsByClassName("idinput");
+    for(let g = 0;g<inputforID.length;g++)
+    {
+        inputforID.item(g).value = dataUrl.id[0];
+    }
 //console.log(dataUrl.id[0]); 
 downloadData();
 
 }
-async function downloadData()
+ async function downloadData()
 {
+    contenerr.innerHTML = "";
+            ae = false;
+            pytania = [];
     let g ="";
+    
      $.post("/testy/pobieranie/bazadanych",{idT: dataUrl.id[0]},function(data,status){
         
-        
+        if(data.length > 0)
+        {
+            ae = true;
             //console.log(data);
             testData = data[0];
             let datae = new Date(data[0].data)
@@ -39,25 +51,54 @@ async function downloadData()
         
       g += datae.getFullYear();
             //console.log(testData);
+        }
     }).then(()=>{
+        if(ae){
         titlee.innerText = testData.nazwa;
         dataUU.innerText = g;
         klasUU.innerText = testData.klasa;
+        }
     }).then(() =>{
+        if(ae){
         $.post("/testy/pobieranie/bazadanych",{idPT: testData.id},function(data,status){
-        
-        
-            
             for(let a = 0;a<data.length;a++)
             {
+                
                 pytan = pytania.push(new pytanie(data[a].id,a+1,data[a].tresc,data[a].odpA,data[a].odpB,data[a].odpC,data[a].odpD,data[a].imgSrc,data[a].poprawna,data[a].imgW,data[a].imgH));
             }
-            
-    }).then(()=>{
         
+    }).then(()=>{
+        if(pytan>0)
+        {
         for(let a = 0;a<pytan;a++){
             addPytanie(pytania[a]);
         }
+    }
+        else
+        {
+            document.getElementsByClassName("error_bodyy").item(0).classList.toggle("disable");
+        }
+
+        $(".dell").on("click",function(event){
+            //console.log(event.target.getAttribute("name"));
+            if(confirm("Czy napewno chcesz usunąć to pytanie?"))
+            {
+                let query = "DELETE FROM `pytania` WHERE `id`="+event.target.getAttribute("name");
+                $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
+                    if(data.status =="true")
+                    {
+                        
+                         query = "UPDATE `testy` SET `iloscPytan`=`iloscPytan`-1 WHERE `id`="+testData.id+";";
+                         $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){});
+                    }
+            }).then(()=>{
+                document.getElementsByClassName("body").item(0).classList.toggle("disable");
+            document.getElementsByClassName("background").item(0).classList.toggle("disable");
+            
+            downloadData();
+            });
+        }        
+        });
     }).then(()=>{
         sleep(500).then(()=>{
             document.getElementsByClassName("body").item(0).classList.remove("disable");
@@ -65,7 +106,14 @@ async function downloadData()
         })
         
     });
-    });
+}else
+{
+    sleep(500).then(()=>{
+        document.getElementsByClassName("error_body").item(0).classList.remove("disable");
+        document.getElementsByClassName("background").item(0).classList.toggle("disable");
+    })
+}
+});
 }
 function addPytanie(aPytanie)
 {
@@ -81,7 +129,7 @@ function addPytanie(aPytanie)
         o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
         o+='</ol></div>';
-        o+='<form action="/testy/edycja/pytanie" method="GET"><button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><input type="number" name="id" value="'+aPytanie.id+'" style="display:none"></form><button class="button_to_do" style="margin-bottom:20px;">Usuń</button></div>';
+        o+='<form action="/testy/edycja/pytanie" method="GET"><button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><input type="number" name="id" value="'+aPytanie.id+'" style="display:none"></form><button class="button_to_do dell" name="'+aPytanie.id+'" style="margin-bottom:20px;">Usuń</button></div>';
         
         contenerr.innerHTML+=o;
 }

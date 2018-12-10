@@ -1,17 +1,17 @@
 //@Copyright 2018 BŚ
 window.onload = function(){
 document.getElementById("nazwaT").value="";
-document.getElementById("iloscT").value="";
+//document.getElementById("iloscT").value="";
 document.getElementById("klasaT").value="";
 document.getElementById("nazwaT").classList.remove("require");
-document.getElementById("iloscT").classList.remove("require");
+//document.getElementById("iloscT").classList.remove("require");
 document.getElementById("klasaT").classList.remove("require");
 const tabela = document.getElementById("testTable");
 renewTest();
 document.getElementById("utworz").addEventListener("click", function(){
     
 let nazwa = document.getElementById("nazwaT").value;
-let ilosc = document.getElementById("iloscT").value;
+//let ilosc = document.getElementById("iloscT").value;
 let klasa = document.getElementById("klasaT").value;
 var Today = new Date();
     var Month = Today.getMonth();
@@ -28,19 +28,19 @@ var Today = new Date();
     else
     data+="0"+Day;
 
-if((nazwa.length >0)&&(ilosc.length>0)&&klasa.length>0)
+if((nazwa.length >0)&&klasa.length>0)
 {
     document.getElementById("nazwaT").value="";
-    document.getElementById("iloscT").value="";
+   // document.getElementById("iloscT").value="";
     document.getElementById("klasaT").value="";
     if(document.getElementById("nazwaT").classList.contains("require"))
         document.getElementById("nazwaT").classList.remove("require")
-    if(document.getElementById("iloscT").classList.contains("require"))
-        document.getElementById("iloscT").classList.remove("require")
+   // if(document.getElementById("iloscT").classList.contains("require"))
+        //document.getElementById("iloscT").classList.remove("require")
     if(document.getElementById("klasaT").classList.contains("require"))
         document.getElementById("klasaT").classList.remove("require")      
-$.post( "/testy/addTest", { name: nazwa, ilosc: ilosc,klasa: klasa,data: (data) },function(data,status){
-    console.log(data);
+$.post( "/testy/addTest", { name: nazwa, ilosc: 0,klasa: klasa,data: (data) },function(data,status){
+    //console.log(data);
     tabela.innerHTML="";
     for(let a = 0;a<data.length;a++)
     {
@@ -61,6 +61,14 @@ $.post( "/testy/addTest", { name: nazwa, ilosc: ilosc,klasa: klasa,data: (data) 
         "</td><td>"+'<form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
         '<form action="/testy/edycja" method="GET"><button  class="button_to_do" style="float: left; ">Edytuj</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
         '<div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń test</button></div>'+"</td></tr>";
+}
+if(confirm("Czy chcesz dodać pytania do testu teraz? \n(Możesz to zrobić w każdej chwili)"))
+{
+    console.log("asdasD");
+    $.post( "/testy/pobieranie/bazadanych/szukaj", { name: nazwa, ilosc: 0,klasa: klasa,data: (data) },function(data,status){
+        console.log(data);
+        window.location.href = "/testy/widok?id="+data[0].id;
+    });
 }
     przyciski();
 
@@ -149,18 +157,29 @@ function dellTest(a)
     if(confirm("Czy napewno chcesz usunąć test?"))
     {
         //console.log("del test id="+a);
-        var query = "DELETE FROM `testy` WHERE `id`="+a;
+        var query = "DELETE FROM `testy` WHERE `id`='"+a+"';"
         //console.log(query);
         document.getElementsByClassName("body").item(0).classList.toggle("disable");
             document.getElementsByClassName("background").item(0).classList.remove("disable");
         $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
             if(data.status =="true")
             {
-                renewTest();
-                new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
+
+                
+               // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
             }
             //console.log(data);
-        } );
+        } ).then(()=>{ 
+                query = "DELETE FROM `pytania` WHERE `idtestu`="+a;
+            $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
+            if(data.status =="true")
+            {
+
+                renewTest();
+               // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
+            }
+            //console.log(data);
+        } )});
     }
 }
 }

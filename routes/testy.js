@@ -31,13 +31,13 @@ router.get("/testy/edycja/pytanie",function(req,res,next){
     res.render("editPytanie")
 })
 router.get("/testy/tworzenie/pytanie",function(req,res,next){
-    console.log("działa22");
+    res.render("addPytanie");
 })
 router.get("/testy/widok",function(req,res){
-    res.render("widokTestu",{name: "int"});
+    res.render("widokTestu");
 })
 router.post("/testy/addTest",function(req,res){
-    console.log(req.body);
+    //console.log(req.body);
     let query = "INSERT INTO `testy` (`id`, `nazwa`, `iloscPytan`, `klasa`, `data`) VALUES (NULL, '"+req.body.name+"', '"+req.body.ilosc+"', '"+req.body.klasa+"', '"+req.body.data+"');";
     con.query(query,function(err,res){});
      qery = "SELECT * FROM `testy`";
@@ -55,7 +55,7 @@ router.post("/testy/addTest",function(req,res){
         con.query(qery, function (err, result, fields) {
             if (err) throw err;
             {
-                console.log(result);
+                //console.log(result);
                 res.json(result);
             }
     
@@ -125,5 +125,56 @@ router.post("/testy/addTest",function(req,res){
     }
         
         
+    });
+    router.post("/testy/pobieranie/bazadanych/szukaj",function(req,res){
+        let a = 0;
+        let query = "SELECT * FROM `testy` WHERE ";
+        if((req.body.name)&&(req.body.name!=""))
+        {if(a <=0)
+            { a++;
+            query+="`nazwa`='"+req.body.name+"'";
+            }else{
+                a++;
+                query+=" AND `nazwa`='"+req.body.name+"'";
+            }
+        }
+        if((req.body.ilosc)&&(req.body.ilosc!=""))
+        {
+            if(a <=0)
+            {
+                a++;
+            query+="`iloscPytan`='"+req.body.ilosc+"'";
+            }else{
+                a++;
+                query+=" AND `iloscPytan`='"+req.body.ilosc+"'";
+            }
+        }
+        if((req.body.klasa)&&(req.body.klasa!=""))
+        {if(a <=0)
+            {
+                a++;
+            query+="`klasa`='"+req.body.klasa+"'";
+            }else{
+                a++;
+                query+=" AND `klasa`='"+req.body.klasa+"'";
+            }
+        }
+        if((req.body.data)&&(req.body.data!=""))
+        {if(a <=0)
+            {
+                a++;
+            query+="`data`='"+req.body.data+"'";
+            }else{
+                a++;
+                query+=" AND `data`='"+req.body.data+"'";
+            }
+        }
+        console.log(query);
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            {
+                //console.log(result);
+                res.json(result);
+            }})
     });
   module.exports = router;

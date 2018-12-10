@@ -8,18 +8,18 @@
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
         <script src="/js/pytanieClass.js"></script>
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="/js/editpytanie.js"></script>
-        
+        <script type="text/javascript" src="/js/cpytanie.js"></script>
     </head>
     <body>
         
-        <div class="body disable" >
-                <div class="titleC">Edycja pytania</div>
+        <div class="body" >
+                <div class="titleC">Dodawanie pytania</div>
                 <hr>
             <div id="contener ">
+                    <button class="button_to_do" id="fast">Szybkie wprowadzanie danych</button>
             <textarea class="textareaEdit" id="pytanie" placeholder="Pytanie testu"></textarea>
-            <button class="button_to_do" id="zmiana"style="margin-top:1vw;margin-bottom:1vw;">Zmień poprawną odpowiedz</button>
-            <textarea class="inputedit " id="p1" placeholder="Odpowiedz 1"></textarea>
+            <button class="button_to_do" id="zmiana"style="margin-top:1vw;margin-bottom:1vw;">Zaznacz poprawną odpowiedz</button>
+            <textarea class="inputedit "  id="p1" placeholder="Odpowiedz 1"></textarea>
             <textarea class="inputedit " id="p2" placeholder="Odpowiedz 2"></textarea>
             <textarea class="inputedit" id="p3" placeholder="Odpowiedz 3"></textarea>
             <textarea class="inputedit" id="p4" placeholder="Odpowiedz 4"></textarea>  
@@ -27,17 +27,16 @@
             <button class="button_to_do" id="cancle">Anuluj</button>
             <button class="button_to_do" id="dell">Usuń</button>
             <div style="clear:both"></div>
+            
         </div>
         
         <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
         </div>
-        <div class="background " ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        <div  class="backgroundTekst">Wczytywanie danych</div>
+        <div class="fastBox disable">
+        <textarea class="textareaEditfull" id="fastTekst" placeholder="Pytanie testu"></textarea>
+        <button class="button_to_do" id="convert">Konwertuj</button>
+        <button class="button_to_do" id="cancleFast">Anuluj</button>
+        <div style="clear:both"></div>
     </div>
-    <div class="error_body disable">
-        <img src="/img/error21.png"  height="500px;" width="500px;">
-        <br>Nie znaleziono pytania!
-    </div>
-    
     </body>
 </html>

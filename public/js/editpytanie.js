@@ -28,6 +28,7 @@ let id_T;
 let zz = false;
 let a =0;
 let pytania ;
+
 window.onload = function(){
     const el =  parseURLParams(window.location.href)
  id = el.id[0];
@@ -125,8 +126,7 @@ p4.addEventListener('click',function(){
     }
     
 })
-
-
+let ae = false;
 // pytania =new pytanie(1,"1231@","1231@#","!2312312","123123123123","1231231231","1231231231@","3");
 $.post("/testy/pobieranie/bazadanych",{idPP: id},function(data,status){
     //console.log(data[0].tresc)
@@ -136,17 +136,19 @@ $.post("/testy/pobieranie/bazadanych",{idPP: id},function(data,status){
     {
         id_T = data[aa].idtestu;
         pytania =new pytanie(data[aa].id,1,data[aa].tresc,data[aa].odpA,data[aa].odpB,data[aa].odpC,data[aa].odpD,data[aa].imgSrc,data[aa].poprawna,data[aa].imgW,data[aa].imgH);
-        
+        ae = true;
     }
                // console.log(pytania);
         
 }).then(()=>{
+    if(ae){
 pytaniee.innerText = pytania.pytanie;
 p1.innerText = pytania.odpA;
 p2.innerText = pytania.odpB;
 p3.innerText = pytania.odpC;
 p4.innerText = pytania.odpD;
 a = parseInt(pytania.ans);
+    
 switch(a)
 {
     case 1: p1.classList.toggle("select");break;
@@ -154,12 +156,34 @@ switch(a)
     case 3: p3.classList.toggle("select");break;
     case 4: p4.classList.toggle("select");break;
 }
-
+    }
 }).then(()=>{
+    if(ae){
     sleep(500).then(()=>{
         document.getElementsByClassName("body").item(0).classList.remove("disable");
         document.getElementsByClassName("background").item(0).classList.toggle("disable");
     })
+}else{
+    sleep(500).then(()=>{
+        document.getElementsByClassName("error_body").item(0).classList.remove("disable");
+        document.getElementsByClassName("background").item(0).classList.toggle("disable");
+    })
+}
 });
-
+$("#dell").on("click",function(event){
+    //console.log(event.target.getAttribute("name"));
+    if(confirm("Czy napewno chcesz usunąć to pytanie?"))
+    {
+        let query = "DELETE FROM `pytania` WHERE `id`="+id;
+        $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
+            if(data.status =="true")
+            {
+                
+                 
+            }
+    }).then(()=>{
+        window.location.href = "/testy/widok?id="+id_T;
+    });
+}        
+});
 }

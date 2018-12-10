@@ -169,7 +169,7 @@ body{
 }
 .content>input{
     width: 100%;
-    font-size: 3vw !important;
+    font-size: 2vw !important;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-bottom: 40px;
 }
@@ -318,4 +318,26 @@ margin-right: 10%;
     box-shadow: 0px 0px 1vw #e0c134;
     border-color: #e0c134;
     background: #e0c03459;
+  }
+
+  .textareaEditfull{
+      width: 100vw;
+      height: 80%;
+      margin: 0 0 0 0;
+      margin-bottom: 20px;
+      font-size: 1vw;
+  }
+  #fast{
+      margin-bottom: 20px;
+  }
+  .idinput
+  {
+      display: none;
+  }
+  .error_bodyy
+  {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold ', sans-serif;
+    font-size: 60px;
+    color: #FF0000;
   }
