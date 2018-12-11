@@ -24,6 +24,13 @@ window.onload = function()
     odpD.value = "";
     goodAnser = 0;
     let zz = false;
+    $("#cancle").on("click",function(){
+        window.location.href = "/testy/widok?id="+id;
+    });
+    $("#cancle1").on("click",function(){
+        window.location.href = "/testy/widok?id="+id;
+    });
+    
     $("#save").on("click",function(){
         if(goodAnser== 0)
         {
@@ -46,7 +53,7 @@ window.onload = function()
             return;
 
             let query = "INSERT INTO `pytania` (`id`, `idtestu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgSrc`, `imgW`, `imgH`) VALUES"
-            query+="(NULL, '"+id+"', '"+pytanieT.value+"', '"+odpA.value+"', '"+odpB.value+"', '"+odpC.value+"', '"+odpD.value+"', '"+goodAnser.value+"', NULL, NULL, NULL);"
+            query+="(NULL, '"+id+"', '"+pytanieT.value+"', '"+odpA.value+"', '"+odpB.value+"', '"+odpC.value+"', '"+odpD.value+"', '"+goodAnser+"', NULL, NULL, NULL);"
             console.log(query);
             $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
                 query = "UPDATE `testy` SET `iloscPytan`=`iloscPytan`+1 WHERE `id`="+id+";";

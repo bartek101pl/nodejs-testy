@@ -21,8 +21,12 @@ window.onload =  function(){
     }
 //console.log(dataUrl.id[0]); 
 downloadData();
-
+$("#back").on("click",function(){
+    window.location.href = "/testy";
+})
 }
+$("#addnewT").on("click",function(){window.location.href = "/testy/tworzenie/test";})
+    
  async function downloadData()
 {
     contenerr.innerHTML = "";
@@ -123,11 +127,35 @@ function addPytanie(aPytanie)
       
        if(aPytanie.img != null)
        o+="<div style='text-align: center;'><img src='"+aPytanie.img+"'  width='"+aPytanie.imgW+"' height='"+aPytanie.imgH+"' class='pytanie_img'></div>";
-        o+='<div class="pytania_box"><ol>';      
-        o+='<li><label><input type="radio" class="odp1" disabled>'+aPytanie.odpA+'</label></li>';
+        o+='<div class="pytania_box"><ol>';
+        if(aPytanie.ans == 1)
+        {      
+        o+='<li><label><input type="radio" class="odp1" checked disabled>'+aPytanie.odpA+'</label></li>';
         o+='<li><label><input type="radio" class="odp2" disabled>'+aPytanie.odpB+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
         o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
+        }
+        else if(aPytanie.ans == 2)
+        {      
+        o+='<li><label><input type="radio" class="odp1"  disabled>'+aPytanie.odpA+'</label></li>';
+        o+='<li><label><input type="radio" class="odp2" checked disabled>'+aPytanie.odpB+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
+        }
+        else if(aPytanie.ans == 3)
+        {      
+        o+='<li><label><input type="radio" class="odp1"  disabled>'+aPytanie.odpA+'</label></li>';
+        o+='<li><label><input type="radio" class="odp2" disabled>'+aPytanie.odpB+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp3" checked disabled>'+aPytanie.odpC+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp4" disabled>'+aPytanie.odpD+'</label></li>'; 
+        }
+        else if(aPytanie.ans == 4)
+        {      
+        o+='<li><label><input type="radio" class="odp1" disabled>'+aPytanie.odpA+'</label></li>';
+        o+='<li><label><input type="radio" class="odp2" disabled>'+aPytanie.odpB+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp3" disabled>'+aPytanie.odpC+'</label></li>'; 
+        o+='<li><label><input type="radio" class="odp4" checked  disabled>'+aPytanie.odpD+'</label></li>'; 
+        }
         o+='</ol></div>';
         o+='<form action="/testy/edycja/pytanie" method="GET"><button class="button_to_do" style="margin-bottom:20px;">Edytuj</button><input type="number" name="id" value="'+aPytanie.id+'" style="display:none"></form><button class="button_to_do dell" name="'+aPytanie.id+'" style="margin-bottom:20px;">Usuń</button></div>';
         
