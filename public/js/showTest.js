@@ -44,10 +44,10 @@ downloadData();
             else
             g+=datae.getDate()+"-";
 
-        if(datae.getMonth()<10)
-        g+="0"+datae.getMonth()+"-";
+        if(datae.getMonth()+1<10)
+        g+="0"+datae.getMonth()+1+"-";
         else
-        g+=datae.getMonth()+"-";
+        g+=datae.getMonth()+1+"-";
         
       g += datae.getFullYear();
             //console.log(testData);
