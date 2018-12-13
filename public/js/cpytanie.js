@@ -24,6 +24,13 @@ window.onload = function()
     odpD.value = "";
     goodAnser = 0;
     let zz = false;
+    $("#cancle").on("click",function(){
+        window.location.href = "/testy/widok?id="+id;
+    });
+    $("#cancle1").on("click",function(){
+        window.location.href = "/testy/widok?id="+id;
+    });
+
     $("#save").on("click",function(){
         if(goodAnser== 0)
         {
@@ -47,18 +54,11 @@ window.onload = function()
 
             let query = "INSERT INTO `pytania` (`id`, `idtestu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgSrc`, `imgW`, `imgH`) VALUES"
             query+="(NULL, '"+id+"', '"+pytanieT.value+"', '"+odpA.value+"', '"+odpB.value+"', '"+odpC.value+"', '"+odpD.value+"', '"+goodAnser+"', NULL, NULL, NULL);"
-            //console.log(query);
-            switch(goodAnser)
-            {
-                case 1: p1.classList.remove("select");break;
-                case 2: p2.classList.remove("select");break;
-                case 3: p3.classList.remove("select");break;
-                case 4: p4.classList.remove("select");break;
-            }
+            console.log(query);
             $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
                 query = "UPDATE `testy` SET `iloscPytan`=`iloscPytan`+1 WHERE `id`="+id+";";
                 $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){});
-                
+
         }).then(()=>{
             if(!confirm("Pytanie zostało dodane. \n Czy chcesz dodać kolejne pytanie ?"))
             {
@@ -82,7 +82,7 @@ window.onload = function()
         document.getElementsByClassName("fastBox").item(0).classList.toggle("disable");
     });
     $("#cancleFast").on("click",function(){
-        
+
         document.getElementsByClassName("body").item(0).classList.toggle("disable");
         document.getElementsByClassName("fastBox").item(0).classList.toggle("disable");
         fast.value = "";
@@ -111,16 +111,16 @@ window.onload = function()
         let d = "";
         for(let g = 0;g<a.length;g++)
         {
-            
+
             if(a[g] =='\n')
             {
                 if(d != "")
                 //console.log(d)
-                
+
                 data.push(d);
                 d = "";
-                
-                
+
+
             }else{
                 d+=a[g];
             }
@@ -150,7 +150,7 @@ window.onload = function()
     }else{
         return "";
     }
-        
+
     }
     zmian.addEventListener("click",function(){
         zz = true;
@@ -175,7 +175,7 @@ window.onload = function()
             //alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
             //zmian.classList.toggle("editTable");
         }
-        
+
     })
     p2.addEventListener('click',function(){
         if((zz)&&(goodAnser!=2)){
@@ -197,7 +197,7 @@ window.onload = function()
             //alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
             //zmian.classList.toggle("editTable");
         }
-        
+
     })
     p3.addEventListener('click',function(){
         if((zz)&&(goodAnser!=3)){
@@ -219,7 +219,7 @@ window.onload = function()
             //alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
             //zmian.classList.toggle("editTable");
         }
-        
+
     })
     p4.addEventListener('click',function(){
         if((zz)&&(goodAnser!=4)){
@@ -241,7 +241,7 @@ window.onload = function()
             //alert("Zmineiono poprawną odpowiedz na odpowiedz 1.")
             //zmian.classList.toggle("editTable");
         }
-        
+
     })
     function parseURLParams(url) {
         var queryStart = url.indexOf("?") + 1,
@@ -249,18 +249,17 @@ window.onload = function()
             query = url.slice(queryStart, queryEnd - 1),
             pairs = query.replace(/\+/g, " ").split("&"),
             parms = {}, i, n, v, nv;
-    
+
         if (query === url || query === "") return;
-    
+
         for (i = 0; i < pairs.length; i++) {
             nv = pairs[i].split("=", 2);
             n = decodeURIComponent(nv[0]);
             v = decodeURIComponent(nv[1]);
-    
+
             if (!parms.hasOwnProperty(n)) parms[n] = [];
             parms[n].push(nv.length === 2 ? v : null);
         }
         return parms;
     }
 }
-

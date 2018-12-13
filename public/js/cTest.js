@@ -14,7 +14,7 @@ let nazwa = document.getElementById("nazwaT").value;
 //let ilosc = document.getElementById("iloscT").value;
 let klasa = document.getElementById("klasaT").value;
 var Today = new Date();
-    var Month = Today.getMonth();
+    var Month = Today.getMonth()+1;
     var Day = Today.getDate();
     var Year = Today.getFullYear();
     let data = Year+"-";
@@ -40,7 +40,7 @@ if((nazwa.length >0)&&klasa.length>0)
     if(document.getElementById("klasaT").classList.contains("require"))
         document.getElementById("klasaT").classList.remove("require")      
 $.post( "/testy/addTest", { name: nazwa, ilosc: 0,klasa: klasa,data: (data) },function(data,status){
-    //console.log(data);
+    console.log(data);
     tabela.innerHTML="";
     for(let a = 0;a<data.length;a++)
     {
@@ -51,8 +51,8 @@ $.post( "/testy/addTest", { name: nazwa, ilosc: 0,klasa: klasa,data: (data) },fu
             else
             g+=datae.getDate()+"-";
 
-        if(datae.getMonth()<10)
-        g+="0"+datae.getMonth()+"-";
+        if(datae.getMonth()+1<10)
+        g+="0"+datae.getMonth()+1+"-";
         else
         g+=datae.getMonth()+"-";
          g += datae.getFullYear();
@@ -131,10 +131,10 @@ function renewTest(){
             else
             g+=datae.getDate()+"-";
 
-        if(datae.getMonth()<10)
-        g+="0"+datae.getMonth()+"-";
+        if(datae.getMonth()+1<10)
+        g+="0"+datae.getMonth()+1+"-";
         else
-        g+=datae.getMonth()+"-";
+        g+=datae.getMonth()+1+"-";
         
       g += datae.getFullYear();
             tabela.innerHTML+="<tr><td>"+(a+1)+".</td><td>"+data[a].nazwa+"</td><td>"+data[a].iloscPytan+"</td><td>"+data[a].klasa+"</td><td>"+g+"</td><td>"+

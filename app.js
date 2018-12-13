@@ -1,5 +1,5 @@
 //@Copyright 2018 BŚ
-const ver = "0.1.19.4";
+const ver = "0.1.20.1";
 const express = require('express');
 const session = require('express-session');
 const app = express();
