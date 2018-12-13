@@ -1,9 +1,14 @@
 //@Copyright 2018 BŚ
 window.onload = function(){
+    const nazwa = document.getElementById('nazwaT');
+    const ilosc = document.getElementById('iloscT');
+    const klasa = document.getElementById('klasaT');
+    const data1 = document.getElementById('datafrom');
+    const data2 = document.getElementById('datato');
     const tabela = document.getElementById("testTable");
     renewTest();
-    
-    
+
+
     function przyciski()
     {
        let tr = document.getElementsByTagName("tr");
@@ -27,9 +32,9 @@ window.onload = function(){
        })
        //console.log(button);
     }
-    
+
     function renewTest(){
-                
+
         $.post( "/testy/showTable", {},function(data,status){
             //console.log(data.length);
             tabela.innerHTML="";
@@ -41,20 +46,20 @@ window.onload = function(){
                 g+="0"+datae.getDate()+"-";
                 else
                 g+=datae.getDate()+"-";
-    
+
             if(datae.getMonth()+1<10)
             g+="0"+datae.getMonth()+1+"-";
             else
             g+=datae.getMonth()+1+"-";
-            
+
           g += datae.getFullYear();
-                
+
                 tabela.innerHTML+="<tr><td>"+(a+1)+".</td><td>"+data[a].nazwa+"</td><td>"+data[a].iloscPytan+"</td><td>"+data[a].klasa+"</td><td>"+g+"</td><td>"+
             '<form action="/testy/widok" method="GET"> <button  class="button_to_do" style="float: left; ">Podgląd</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+
             "</td><td>"+'<form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<form action="/testy/edycja" method="GET"><button  class="button_to_do" style="float: left; ">Edytuj</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń test</button></div>'+"</td></tr>";
-                
+
             }
             przyciski();
         } ).then(()=>{
@@ -76,26 +81,63 @@ window.onload = function(){
             $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
                 if(data.status =="true")
                 {
-                    renewTest();
-                    new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
+                    //renewTest();
+                    //new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);});
                 }
                 //console.log(data);
-            } ).then(()=>{ 
+            } ).then(()=>{
                 query = "DELETE FROM `pytania` WHERE `idtestu`="+a;
             $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
             if(data.status =="true")
             {
 
                 renewTest();
-               // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
+               // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);});
             }
             //console.log(data);
         } )});;
         }
+    }
+    $("#szukaj").on("click",szukaj);
+    function szukaj(){
+        document.getElementsByClassName("body").item(0).classList.toggle("disable");
+                document.getElementsByClassName("background").item(0).classList.remove("disable");
+        $.post( "/testy/pobieranie/bazadanych/szukaj",{name: nazwa.value, ilosc: ilosc.value,klasa: klasa.value,data: data1.value,data2: data2.value},function(data,status){
+            //console.log(data.length);
+            tabela.innerHTML="";
+            for(let a = 0;a<data.length;a++)
+            {
+                let datae = new Date(data[a].data)
+                let g = "";
+                if(datae.getDate()<10)
+                g+="0"+datae.getDate()+"-";
+                else
+                g+=datae.getDate()+"-";
+
+            if(datae.getMonth()+1<10)
+            g+="0"+datae.getMonth()+1+"-";
+            else
+            g+=datae.getMonth()+1+"-";
+
+          g += datae.getFullYear();
+
+                tabela.innerHTML+="<tr><td>"+(a+1)+".</td><td>"+data[a].nazwa+"</td><td>"+data[a].iloscPytan+"</td><td>"+data[a].klasa+"</td><td>"+g+"</td><td>"+
+            '<form action="/testy/widok" method="GET"> <button  class="button_to_do" style="float: left; ">Podgląd</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+
+            "</td><td>"+'<form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
+            '<form action="/testy/edycja" method="GET"><button  class="button_to_do" style="float: left; ">Edytuj</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
+            '<div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń test</button></div>'+"</td></tr>";
+
+            }
+            przyciski();
+        } ).then(()=>{
+            sleep(500).then(()=>{
+                document.getElementsByClassName("body").item(0).classList.remove("disable");
+                document.getElementsByClassName("background").item(0).classList.toggle("disable");
+            })
+        });
     }
     }
     function sleep (time) {
         //użycie : sleep(czas).then(() => {});
         return new Promise((resolve) => setTimeout(resolve, time));
       }
-    

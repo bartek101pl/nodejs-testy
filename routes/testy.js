@@ -159,7 +159,7 @@ router.post("/testy/addTest",function(req,res){
                 query+=" AND `klasa`='"+req.body.klasa+"'";
             }
         }
-        if((req.body.data)&&(req.body.data!=""))
+        if((req.body.data)&&((!req.body.data2)))
         {if(a <=0)
             {
                 a++;
@@ -167,6 +167,16 @@ router.post("/testy/addTest",function(req,res){
             }else{
                 a++;
                 query+=" AND `data`='"+req.body.data+"'";
+            }
+        } else if((req.body.data)&&((req.body.data2)))
+        {
+            if(a <=0)
+            {
+                a++;
+            query+="`data`>='"+req.body.data+"'AND `data`<='"+req.body.data2+"'";
+            }else{
+                a++;
+                query+=" AND `data`>='"+req.body.data+"' AND `data`<='"+req.body.data2+"'";
             }
         }
         console.log(query);
