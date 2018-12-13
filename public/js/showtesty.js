@@ -80,7 +80,17 @@ window.onload = function(){
                     new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
                 }
                 //console.log(data);
-            } );
+            } ).then(()=>{ 
+                query = "DELETE FROM `pytania` WHERE `idtestu`="+a;
+            $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
+            if(data.status =="true")
+            {
+
+                renewTest();
+               // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
+            }
+            //console.log(data);
+        } )});;
         }
     }
     }

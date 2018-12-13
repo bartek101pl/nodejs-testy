@@ -46,8 +46,15 @@ window.onload = function()
             return;
 
             let query = "INSERT INTO `pytania` (`id`, `idtestu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgSrc`, `imgW`, `imgH`) VALUES"
-            query+="(NULL, '"+id+"', '"+pytanieT.value+"', '"+odpA.value+"', '"+odpB.value+"', '"+odpC.value+"', '"+odpD.value+"', '"+goodAnser.value+"', NULL, NULL, NULL);"
-            console.log(query);
+            query+="(NULL, '"+id+"', '"+pytanieT.value+"', '"+odpA.value+"', '"+odpB.value+"', '"+odpC.value+"', '"+odpD.value+"', '"+goodAnser+"', NULL, NULL, NULL);"
+            //console.log(query);
+            switch(goodAnser)
+            {
+                case 1: p1.classList.remove("select");break;
+                case 2: p2.classList.remove("select");break;
+                case 3: p3.classList.remove("select");break;
+                case 4: p4.classList.remove("select");break;
+            }
             $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){
                 query = "UPDATE `testy` SET `iloscPytan`=`iloscPytan`+1 WHERE `id`="+id+";";
                 $.post( "/testy/zarzadzanie/bazadanych",{query: query},function(data,status){});
