@@ -2,7 +2,7 @@ body{
     background-color: #fcfcfc;
     font-family: 'Times New Roman', Times, serif;
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 0 ;
 }
 .heder
 {
@@ -14,11 +14,113 @@ body{
 }
 .body
 {
-    width: 80vw;
-    
+    width: 100vw;
     margin: auto ;
-    margin-top: 0.8vw;
     padding-bottom: 3vw;
+}
+.sticky
+{
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+}
+.nav
+{ 
+    position: sticky;
+	width: 100%;
+	padding: 10px 0;
+	background-color: #c34f4f;
+	text-align: center;
+	border-top: 1px solid #751b1b;
+    border-bottom: 1px solid #751b1b;
+    z-index: 99;
+}
+.nav>ol
+{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 18px;
+	height: 35px;
+	line-height: 200%;
+	display: inline-block;
+}
+
+.nav>ol a
+{
+	color: #ffffff;
+	text-decoration: none;
+	display: block;
+}
+
+.nav>ol > li
+{
+	float: left;
+	width: 150px;
+	height: 40px;
+	border-right: 1px dashed #751b1b;
+}
+
+.nav>ol > li:first-child
+{
+	border-left: 1px dashed #751b1b;
+}
+
+.nav>ol > li:hover
+{
+	background-color: #cf6969;
+}
+
+.nav>ol > li:hover > a
+{
+	color: #451717;
+}
+
+.nav>ol > li > ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	height: 40px;
+	display: none;
+}
+
+.nav>ol > li:hover > ul
+{
+	display: block;
+}
+
+.nav>ol > li > ul > li
+{
+	background-color:#cf6969;
+	position: relative;
+	z-index: 100;
+	border-top: 1px dashed #751b1b;
+}
+
+.nav>ol > li > ul > li:hover
+{
+	background-color: #c34f4f;
+}
+
+.nav>ol > li > ul > li:hover > a
+{
+	color: #451717;
+}
+.menu
+{
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    background-color:  #C3D1A3;
+    position: -webkit-sticky;
+    position: sticky;
+    left:0;
+    top:0;
+
 }
 .boxs
 {
@@ -140,32 +242,21 @@ body{
     font-size: 60px;
     color: #FF0000;
 }
-.menu
-{
-    align-items: center;
-    text-align: center;
-    margin: auto;
-    width: 100%;
-    background-color:  #C3D1A3;
-    position: -webkit-sticky;
-    position: sticky;
-    left:0;
-    padding-top: 0.3vw;
-    padding-bottom:0.3vw;
-    border-radius: 1vw;
-}
+
 .cTest
 {
-    margin-top: 20px;
+    
     background-color: #ebd4ab;
-    width: 100%;
+    width: 90%;
     min-height: 50px;
+    margin: auto;
 }
 .titleC
 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 40px;
     color: #555555;
+   
 }
 .content>input{
     width: 100%;

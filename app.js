@@ -3,7 +3,8 @@ const ver = "0.1.20.1";
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const http = require('http')
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -32,16 +33,7 @@ function connectToDDB()
     });
     return;
 }
-var isConnect = function(req, res, next)
-{
-if(connect == false)
-{   
- res.redirect("/error");
-}else{
-    return next();
-}
-}
-
+//sprawdza czy admin jest zalogowany
 var isLogin = function(req,res,next)
 {
     if((req.session.login)&&(req.session.login == true))
@@ -60,46 +52,48 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
+
+
+//routes wczytywanie do zmiennych odpowiednich routes
+const testy = require("./routes/testy")
+//rendering i wczytywanie testów
+app.get("/",function(req,res,next){
+res.render('socketio');
+});
+//ładowanie strony admin
+app.get("/admin",function(req,res){
+res.render("admin");
+})
+//przekierowanie do odpowiedniego routes
+app.all("/testy*",testy);
+//socket.io
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.emit("a","debil");
+    socket.join("romm123");
+    socket.in(socket.in()).emit("a","asdasdas");
+    socket.on('disconnect', function(){
+      console.log('user disconnected');
+    });
+  });
+  //end socket.io
+
+  //uruchomienie serwera
+  http.listen(app.get('port'),function(){
+    console.log('Serwer Express nasłuchuje na porcie : http:192.168.0.100:'+app.get('port'));
+});
+
+//odpowiedzialne za wyświetlenie wersji oprogramowania
 app.get("/version",function(req,res){
     res.send("<center><font size='30px'>V: <div id='ver'>"+ver+"</div></font></center>");
     console.log(parseURLParams(req.url));
 })
-//routes wczytywanie do zmiennych odpowiednich routes
-const testy = require("./routes/testy")
-//rendering i wczytywanie testów
-app.get("/",isConnect,function(req,res,next){
-res.render('test');
-});
-app.get("/admin",isConnect,function(req,res){
-res.render("admin");
+//odpowiedzialne za wyświetlenie wersji oprogramowania
+app.get("/wersja",function(req,res){
+    res.send("<center><font size='30px'>V: <div id='ver'>"+ver+"</div></font></center>");
+    console.log(parseURLParams(req.url));
 })
-app.all("/testy*",isConnect,testy);
 //w razie błędu należy wywietlić tą stronę
 app.get("/error",function(req,res){
     res.render("error");
 });
-//post metody dostępu do danych z bazy danych
-
-
-http.createServer(app).listen(app.get('port'),function(){
-    console.log('Serwer Express nasłuchuje na porcie : http:192.168.0.100:'+app.get('port'));
-});
-function parseURLParams(url) {
-    var queryStart = url.indexOf("?") + 1,
-        queryEnd = url.indexOf("#") + 1 || url.length + 1,
-        query = url.slice(queryStart, queryEnd - 1),
-        pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
-
-    if (query === url || query === "") return;
-
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=", 2);
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
-
-        if (!parms.hasOwnProperty(n)) parms[n] = [];
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
-}
