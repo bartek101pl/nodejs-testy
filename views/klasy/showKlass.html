@@ -2,12 +2,12 @@
 <html lang="pl">
     <head>
         <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
-        <title>Tworzenie testu</title>
+        <title>Klasy</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="/js/testy/showtesty.js"></script>
+        <script type="text/javascript" src="/js/klasy/showklass.js"></script>
     </head>
     <body>
         <div class="body disable">
@@ -16,6 +16,7 @@
                             <li><a href="/admin">Strona główna</a></li>
                             <li><a href="#">Profil</a>
                                 <ul>
+                                    <li><a href="#">Profil</a></li>
                                     <li><a href="#">Ustawienia</a></li>
                                     <li><a href="#">Zmiana hasła</a></li>
                                 </ul>
@@ -56,28 +57,22 @@
                     
                     </div>
             <div class="cTest">
-                <div class="titleC">Wszystkie testy</div>
+                <div class="titleC">Szukaj Klasy</div>
                 <hr>
                 <div class="content">
-                        <input type="text" id="nazwaT"   maxlength="40" placeholder="Nazwa testu">
-                        <input type="text" id="iloscT"  maxlength="2" placeholder="Iloć pytań">
-                        <input type="text" id="klasaT"   placeholder="Klasa 1-4">
-                        <input type="date" class="dataSzukaj" id="datafrom">
-                        <input type="date" class="dataSzukaj" id="datato">
-                        <input type="button" id="szukaj" placeholder="" value="Szukaj">
-                        <hr>
-                    
-                    <div style="font-size:40px; text-align:center;">Testy</div>
+                    <input type="text" id="nazwaK"   maxlength="40" placeholder="Nazwa klasy">
+                    <input type="button" id="utworz" placeholder="" value="Szukaj">
+                    <hr>
+                    <div style="font-size:40px; text-align:center;">Utworzone testy</div>
                     <table style="width:100%; background-color: #C3D1A3;" border="solid" padding="5px;">
                         
-                        <thead>
+                        <thead style="text-align:center;">
                             <tr>
                                 <td style="width:1%;">Lp.</td>
-                                <td style="width:25%;">Nazwa</td>
-                                <td style="width:2%;">Iloć pytań</td>
-                                <td style="width:1%;">Klasa</td>
+                                <td style="width:25%;">Nazwa klasy</td>
+                                <td style="width:2%;">Iloć uczniów</td>
                                 <td style="width:8%;">Data utworzenia</td>
-                                <td style="width:20%;" colspan="4" style="text-align:center;">Opcje</td>
+                                <td style="width:20%;" colspan="3" style="text-align:center;">Opcje</td>
                             </tr>
                         </thead>
                         <tbody id="testTable">

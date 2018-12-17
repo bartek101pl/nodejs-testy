@@ -1,5 +1,5 @@
 //@Copyright 2018 BŚ
-const ver = "0.1.20.1";
+const ver = "0.1.20.9";
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -53,9 +53,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-
 //routes wczytywanie do zmiennych odpowiednich routes
-const testy = require("./routes/testy")
+const testy = require("./routes/testy");
+const klasa = require("./routes/klasy");
 //rendering i wczytywanie testów
 app.get("/",function(req,res,next){
 res.render('socketio');
@@ -66,6 +66,7 @@ res.render("admin");
 })
 //przekierowanie do odpowiedniego routes
 app.all("/testy*",testy);
+app.all("/klasa*",klasa)
 //socket.io
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -86,12 +87,12 @@ io.on('connection', function(socket){
 //odpowiedzialne za wyświetlenie wersji oprogramowania
 app.get("/version",function(req,res){
     res.send("<center><font size='30px'>V: <div id='ver'>"+ver+"</div></font></center>");
-    console.log(parseURLParams(req.url));
+    
 })
 //odpowiedzialne za wyświetlenie wersji oprogramowania
 app.get("/wersja",function(req,res){
     res.send("<center><font size='30px'>V: <div id='ver'>"+ver+"</div></font></center>");
-    console.log(parseURLParams(req.url));
+    
 })
 //w razie błędu należy wywietlić tą stronę
 app.get("/error",function(req,res){

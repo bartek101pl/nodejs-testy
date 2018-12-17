@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Czas generowania: 04 Gru 2018, 16:44
+-- Host: 127.0.0.1
+-- Czas generowania: 17 Gru 2018, 22:35
 -- Wersja serwera: 10.1.37-MariaDB
--- Wersja PHP: 7.2.12
+-- Wersja PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,7 +22,19 @@ SET time_zone = "+00:00";
 -- Baza danych: `test`
 --
 
+-- --------------------------------------------------------
 
+--
+-- Struktura tabeli dla tabeli `klasa`
+--
+
+CREATE TABLE `klasa` (
+  `id` int(11) NOT NULL,
+  `nazwa` text COLLATE utf8_polish_ci NOT NULL,
+  `ile_Uczni` int(11) NOT NULL,
+  `ilosc_testo` int(11) NOT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -32,11 +44,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `opcje` (
   `id` int(11) NOT NULL,
-  `type` text NOT NULL,
-  `content` text NOT NULL,
-  `stworzyl` text NOT NULL,
+  `type` text COLLATE utf8_polish_ci NOT NULL,
+  `content` text COLLATE utf8_polish_ci NOT NULL,
+  `stworzyl` text COLLATE utf8_polish_ci NOT NULL,
   `aktywna` int(1) NOT NULL
-) ENGINE=InnoDB ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `opcje`
@@ -54,44 +66,16 @@ INSERT INTO `opcje` (`id`, `type`, `content`, `stworzyl`, `aktywna`) VALUES
 CREATE TABLE `pytania` (
   `id` int(11) NOT NULL,
   `idtestu` int(11) NOT NULL,
-  `tresc` text NOT NULL,
-  `odpA` text NOT NULL,
-  `odpB` text NOT NULL,
-  `odpC` text NOT NULL,
-  `odpD` text NOT NULL,
-  `poprawna` text NOT NULL,
-  `imgSrc` text,
+  `tresc` text COLLATE utf8_polish_ci NOT NULL,
+  `odpA` text COLLATE utf8_polish_ci NOT NULL,
+  `odpB` text COLLATE utf8_polish_ci NOT NULL,
+  `odpC` text COLLATE utf8_polish_ci NOT NULL,
+  `odpD` text COLLATE utf8_polish_ci NOT NULL,
+  `poprawna` text COLLATE utf8_polish_ci NOT NULL,
+  `imgSrc` text COLLATE utf8_polish_ci,
   `imgW` float DEFAULT NULL,
   `imgH` float DEFAULT NULL
-) ENGINE=InnoDB ;
-
---
--- Zrzut danych tabeli `pytania`
---
-
-INSERT INTO `pytania` (`id`, `idtestu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgSrc`, `imgW`, `imgH`) VALUES
-(1, 1, 'Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', 'Zbiornik retencyjny', 'Zbiornik retencyjny1231', 'Zbiornik retencyjny2313132', 'Zbiornik retencyjny4234234', '1', NULL, NULL, NULL),
-(2, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(3, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(4, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(5, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(6, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(7, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(8, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(9, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(10, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(11, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(12, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(13, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(14, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(15, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(16, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(17, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(18, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(19, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(20, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(21, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL),
-(22, 1, ' Na podstawie danych zawartych w tabeli okre?l, przy jakiej szeroko?ci dna i jakiej g??boko?ci wykopów tymczasowych wykonywanych w gruntach kategorii III nale?y przyj?? pochylenie skarp 1 : 0,71. ', ' Zbiornik retencyjny', ' Zbiornik retencyjny2fdsfsd', ' Zbiornik retencyjnyretert', ' Zbiornik retencyjny3453453453', '3', NULL, NULL, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -101,24 +85,34 @@ INSERT INTO `pytania` (`id`, `idtestu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`,
 
 CREATE TABLE `testy` (
   `id` int(11) NOT NULL,
-  `nazwa` text NOT NULL,
+  `nazwa` text COLLATE utf8_polish_ci NOT NULL,
   `iloscPytan` int(11) NOT NULL,
-  `klasa` text NOT NULL,
+  `klasa` text COLLATE utf8_polish_ci NOT NULL,
   `data` date NOT NULL
-) ENGINE=InnoDB ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- --------------------------------------------------------
 
 --
--- Zrzut danych tabeli `testy`
+-- Struktura tabeli dla tabeli `uczniowie`
 --
 
-INSERT INTO `testy` (`id`, `nazwa`, `iloscPytan`, `klasa`, `data`) VALUES
-(1, 'Test nr1 ', 10, '1', '2018-11-24'),
-(11, '1', 1, '1', '2018-11-03'),
-(12, '1', 1, '1', '2018-11-03');
+CREATE TABLE `uczniowie` (
+  `id` int(11) NOT NULL,
+  `imie` text COLLATE utf8_polish_ci NOT NULL,
+  `nazwisko` text COLLATE utf8_polish_ci NOT NULL,
+  `klasa_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `klasa`
+--
+ALTER TABLE `klasa`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `opcje`
@@ -141,6 +135,12 @@ ALTER TABLE `testy`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `klasa`
+--
+ALTER TABLE `klasa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT dla tabeli `opcje`
