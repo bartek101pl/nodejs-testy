@@ -22,6 +22,9 @@ const con = mysql.createConnection({
   router.get("/klasa",(req,res)=>{
       res.render("klasy/showKlass");
   })
+  router.get("/klasa/widok/klasy",(req,res)=>{
+    res.render("klasy/editKlass");
+})
   router.post("/klasa/get/klasy",(req,res)=>{
 let query = "SELECT * FROM `klasa`";
 con.query(query,(err,data,focus)=>{
@@ -85,4 +88,13 @@ router.post("/klasa/szukaj/nazwa",(req,res)=>{
             
         })
       });
+      router.post("/klasa/szukaj/id",(req,res)=>{
+        let query = "SELECT * FROM `klasa` WHERE `id`='"+req.body.id+"'";
+        // console.log(query);
+         con.query(query,(err,data,focus)=>{
+             
+                 res.json(data);
+             
+         })
+      })
   module.exports = router;

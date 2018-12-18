@@ -86,7 +86,7 @@ window.onload = function()
                 c+="<td>"+data[a].nazwa+"</td>";
                 c+="<td>"+data[a].ile_Uczni+"</td>";
                 c+="<td>"+g+"</td>";
-                c+='<td><form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Widok klasy</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form></td>';
+                c+='<td><form action="/klasa/widok/klasy" method="GET"><button  class="button_to_do" style="float: left; ">Widok klasy</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form></td>';
                 c+='<td><form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Dodaj ucznia</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form></td>';
                 c+='<td><div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń</button></div></td>';
                 c+="</tr>"

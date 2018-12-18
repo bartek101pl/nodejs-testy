@@ -49,13 +49,13 @@ app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 900000 } }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 //routes wczytywanie do zmiennych odpowiednich routes
 const testy = require("./routes/testy");
 const klasa = require("./routes/klasy");
+const uczen = require("./routes/uczen");
 //rendering i wczytywanie testów
 app.get("/",function(req,res,next){
 res.render('socketio');
@@ -66,7 +66,8 @@ res.render("admin");
 })
 //przekierowanie do odpowiedniego routes
 app.all("/testy*",testy);
-app.all("/klasa*",klasa)
+app.all("/klasa*",klasa);
+app.all("/uczen*",uczen);
 //socket.io
 io.on('connection', function(socket){
     console.log('a user connected');
