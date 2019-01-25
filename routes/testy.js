@@ -40,17 +40,6 @@ router.post("/testy/addTest",function(req,res){
     //console.log(req.body);
     let query = "INSERT INTO `testy` (`id`, `nazwa`, `iloscPytan`, `klasa`, `data`) VALUES (NULL, '"+req.body.name+"', '"+req.body.ilosc+"', '"+req.body.klasa+"', '"+req.body.data+"');";
     con.query(query,function(err,res){});
-     qery = "SELECT * FROM `testy`";
-            con.query(qery, function (err, result, fields) {
-                if (err) throw err;
-                {
-                    //console.log(result);
-                    res.json(result);
-                }
-    
-            });
-    });
-    router.post("/testy/showTable",function(req,res){
         qery = "SELECT * FROM `testy`";
         con.query(qery, function (err, result, fields) {
             if (err) throw err;
@@ -60,7 +49,19 @@ router.post("/testy/addTest",function(req,res){
             }
     
         });
+});
+router.post("/testy/showTable",function(req,res){
+    qery = "SELECT * FROM `testy`";
+    con.query(qery, function (err, result, fields) {
+        if (err) throw err;
+        {
+            //console.log(result);
+            res.json(result);
+        }
+    
     });
+});
+
     router.post("/testy/zarzadzanie/bazadanych",function(req,res){
     var Today = new Date();
     var Month = Today.getMonth();
@@ -187,4 +188,4 @@ router.post("/testy/addTest",function(req,res){
                 res.json(result);
             }})
     });
-  module.exports = router;
+    module.exports = router;

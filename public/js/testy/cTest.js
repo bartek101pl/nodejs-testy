@@ -52,7 +52,7 @@ $.post( "/testy/addTest", { name: nazwa, ilosc: 0,klasa: klasa,data: (data) },fu
             g+=datae.getDate()+"-";
 
         if(datae.getMonth()+1<10)
-        g+="0"+datae.getMonth()+1+"-";
+        g+="0"+(datae.getMonth()+1)+"-";
         else
         g+=datae.getMonth()+"-";
          g += datae.getFullYear();
@@ -132,7 +132,7 @@ function renewTest(){
             g+=datae.getDate()+"-";
 
         if(datae.getMonth()+1<10)
-        g+="0"+datae.getMonth()+1+"-";
+        g+="0"+(datae.getMonth()+1)+"-";
         else
         g+=datae.getMonth()+1+"-";
         

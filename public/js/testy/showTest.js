@@ -49,7 +49,7 @@ $("#addnewT").on("click",function(){window.location.href = "/testy/tworzenie/tes
             g+=datae.getDate()+"-";
 
         if(datae.getMonth()+1<10)
-        g+="0"+datae.getMonth()+1+"-";
+        g+="0"+(datae.getMonth()+1)+"-";
         else
         g+=datae.getMonth()+1+"-";
         
@@ -65,6 +65,7 @@ $("#addnewT").on("click",function(){window.location.href = "/testy/tworzenie/tes
     }).then(() =>{
         if(ae){
         $.post("/testy/pobieranie/bazadanych",{idPT: testData.id},function(data,status){
+            pytan = 0;
             for(let a = 0;a<data.length;a++)
             {
                 

@@ -1,0 +1,66 @@
+<!--@Copyright 2018 BŚ-->
+<html lang="pl">
+    <head>
+        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Panel ucznia</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="body">
+            <div class="nav">
+                <ol>
+                    <li><a href="/uczen">Strona główna</a></li>
+                    <li><a href="/uczen/profil">Profil</a>
+                        <ul>
+                            <li><a href="/uczen/profil/reset/hasla">Zmiana hasła</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/testy/menu">Testy</a>
+                        <ul>
+                            <li><a href="#">Rozpocznij test</a></li>
+                            <li><a href="#">Próbny testy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Wyniki</a>
+                        <ul>
+                            <li><a href="#">Testy</a></li>
+                            <li><a href="#">Nauka</a></li>
+                            <li><a href="#">Kalas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/wyloguj/uczen">Wyloguj</a></li>
+                </ol>
+            
+            </div>
+            <div id="content"></div>
+        </div>
+        <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
+    </body>
+    <script>
+
+            $(document).ready(function() {
+            var NavY = $('.nav').offset().top;
+             
+            var stickyNav = function(){
+            var ScrollY = $(window).scrollTop();
+                  
+            if (ScrollY > NavY) { 
+                $('.nav').addClass('sticky');
+            } else {
+                $('.nav').removeClass('sticky'); 
+            }
+            };
+             
+            stickyNav();
+             
+            $(window).scroll(function() {
+                stickyNav();
+            });
+            });
+            
+        </script>
+    </html>

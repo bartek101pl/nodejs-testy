@@ -432,3 +432,29 @@ margin-right: 10%;
     font-size: 60px;
     color: #FF0000;
   }
+
+  .user{
+cursor: pointer;
+  }
+.body_logowania
+{
+    display: block;
+    width: 25vw;
+    margin: auto;
+margin-top: 30px;
+   
+}
+.body_logowania>form>input
+{
+    display: block;
+    width: 90%;
+    height: 2vw;
+    font-size: 1vw;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.body_logowania>form>div{
+    text-align: center;
+    font-size: 2vw;
+}

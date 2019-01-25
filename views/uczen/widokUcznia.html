@@ -1,0 +1,102 @@
+<html lang="pl">
+    <head>
+        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Widok ucznia</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/js/uczen/widokUczen.js"></script>
+    </head>
+    <body>
+        <div class="body disable">
+                <div class="nav">
+                        <ol>
+                            <li><a href="/admin">Strona główna</a></li>
+                            <li><a href="#">Profil</a>
+                                <ul>
+                                    <li><a href="#">Profil</a></li>
+                                    <li><a href="#">Ustawienia</a></li>
+                                    <li><a href="#">Zmiana hasła</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/testy">Testy</a>
+                                <ul>
+                                    
+                                    <li><a href="/testy/tworzenie/test">Dodaj test</a></li>
+                                    <li><a href="#">Rozpocznij test</a></li>
+                                    <li><a href="#">Aktualne testy</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/klasa">Klasy</a>
+                                <ul>
+                                    
+                                    <li><a href="/klasa/dodaj/klasa">Dodaj klase</a></li>
+                                    <li><a href="#">Archiwizuj klase</a></li>
+                                    <li><a href="#">Wyniki Klas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Archiwum</a>
+                                <ul>
+                                    <li><a href="#">Testy</a></li>
+                                    <li><a href="#">Klasy</a></li>
+                                    <li><a href="#">Uczniowie</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Ustawienia</a>
+                                <ul>
+                                    <li><a href="#">Platformy</a></li>
+                                    <li><a href="#">Testów</a></li>
+                                    <li><a href="#">Administratorzy</a></li>
+                                    <li><a href="#">Strona ucznia</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/wyloguj/admin">Wyloguj</a></li>
+                        </ol>
+                    
+                    </div>
+            <div class="cTest">
+                <div class="titleC">Dane ucznia</div>
+                <hr>
+                <button id="back" class="button_to_do">Cofnij</button>
+                <button id="dellStudent" class="button_to_do">Usuń ucznia</button>
+                <button id="clearH" class="button_to_do">Wyczyśc historie ucznia</button>
+                <hr>
+                <div class="content">
+                        <input type="text" id="nameUczen"   maxlength="40" placeholder="Imie ucznia">
+                        <input type="text" id="nazwiskoUczen"   maxlength="40" placeholder="Nazwisko ucznia">
+                        <input type="button" id="utworz"  placeholder="" value="Zaktualizuj">
+                   
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>  
+        </div>
+  
+ <div class="background " ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div  class="backgroundTekst">Wczytywanie danych</div>
+    </div>   
+</body>
+<script>
+
+        $(document).ready(function() {
+        var NavY = $('.nav').offset().top;
+         
+        var stickyNav = function(){
+        var ScrollY = $(window).scrollTop();
+              
+        if (ScrollY > NavY) { 
+            $('.nav').addClass('sticky');
+        } else {
+            $('.nav').removeClass('sticky'); 
+        }
+        };
+         
+        stickyNav();
+         
+        $(window).scroll(function() {
+            stickyNav();
+        });
+        });
+        
+    </script>
+</html>

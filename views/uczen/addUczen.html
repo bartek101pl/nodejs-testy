@@ -1,11 +1,12 @@
 <html lang="pl">
     <head>
         <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
-        <title>Klasa</title>
+        <title>Dodawanie ucznia</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/js/uczen/addUczen.js"></script>
     </head>
     <body>
         <div class="body ">
@@ -50,7 +51,7 @@
                                     <li><a href="#">Strona ucznia</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Wyloguj</a></li>
+                            <li><a href="/wyloguj/admin">Wyloguj</a></li>
                         </ol>
                     
                     </div>
@@ -62,6 +63,8 @@
                 <div class="content">
                         <input type="text" id="nameUczen"   maxlength="40" placeholder="Imie ucznia">
                         <input type="text" id="nazwiskoUczen"   maxlength="40" placeholder="Nazwisko ucznia">
+                        <input type="text" id="loginUczen"   maxlength="40" placeholder="Login ucznia">
+                        <input type="password" id="hasloUczen"   maxlength="40" placeholder="Hasło">
                         <input type="button" id="utworz" placeholder="" value="Dodaj">
                    
                 </div>

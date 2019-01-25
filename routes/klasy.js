@@ -5,6 +5,8 @@ const http = require('http')
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+let idDodawanejKLasy = 0;
+let addIsEnable = false;
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -34,7 +36,7 @@ con.query(query,(err,data,focus)=>{
   router.post("/klasa/get/klasy/data",(req,res)=>{
     let query = "SELECT * FROM `klasa`";
     let a = 0;
-    if(req.body.name!="")
+    if((req.body.name!="")&&(req.body.name))
     {
         if(a==0)
         {
@@ -56,7 +58,7 @@ con.query(query,(err,data,focus)=>{
             a++;
         }
     }
-    //console.error(query);
+   // console.error(query);
     con.query(query,(err,data,focus)=>{
         res.json(data);
     });
@@ -71,11 +73,19 @@ con.query(query,(err,data,focus)=>{
 })
   });
   router.post("/klasa/dell/klasa",(req,res)=>{
-    let query = "DELETE FROM `klasa` WHERE `id`='"+req.body.id+"';";
+    let query = "DELETE FROM `klasa` WHERE `id`="+req.body.id+";";
     con.query(query,(err,data,focus)=>{
         if(err) throw err
         else{
+
+            let query = " DELETE FROM `uczniowie` WHERE `klasa_id`="+req.body.id+";";
+    con.query(query,(err,data,focus)=>{
+        if(err) throw err
+        else{
+            
             res.json({status: "true"});
+        }
+    })
         }
     })
       });
