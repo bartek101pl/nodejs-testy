@@ -14,7 +14,7 @@ body{
 }
 .body
 {
-    width: 100vw;
+    width: 100%;
     margin: auto ;
     padding-bottom: 3vw;
 }
@@ -156,6 +156,20 @@ body{
     cursor: pointer;
 
 }
+.boxssC
+{
+    width: 29px; 
+    vertical-align: baseline;
+    padding: 5px 0 5px 0;
+    margin-bottom: 10px;
+    border: 1px solid #919171;
+    display: inline-block;
+    text-align: center;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 .active{
     border-color: #7DB1D3 !important;
     box-shadow: 0px 0px 2px 1px #C4C4C4;
@@ -242,7 +256,14 @@ body{
     font-size: 60px;
     color: #FF0000;
 }
-
+.correct
+{
+    background-color: #6DB46D !important;
+}
+.wrong
+{
+    background-color: #FF9191 !important;
+}
 .cTest
 {
     
@@ -304,6 +325,34 @@ body{
 .content>input:active{
     border-color: #7DB1D3 !important;
     box-shadow: 0px 0px 2px 1px #C4C4C4;
+}
+.tabela>tr{
+    background-color: #fff4e1;
+}
+.tabela>tr:nth-child(even) { background-color:#fff8eb; }
+.tabela>tr { background-color:#c3d1a3; }
+.tabelaH>thead{
+    background-color:#fff8eb;
+}
+.tabelaH>thead>tr>td:nth-child(6){
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    
+}
+.tabelaH{
+    font-size: 20px;
+    
+}
+.tabelaH>tbody>tr>td>form>button{
+    width: 100%;
+    margin-left: 0px;
+    font-size: 0.9vw;
+}
+.tabelaH>tbody>tr>td>button{
+    width: 100%;
+    margin-left: 0px;
+    font-size: 0.9vw;
 }
 .content>table>thead>tr>td:nth-child(6){
     text-align: center;
@@ -457,4 +506,166 @@ margin-top: 30px;
 .body_logowania>form>div{
     text-align: center;
     font-size: 2vw;
+}
+.triangle {
+	width: 0;
+	height: 0;
+}
+.triangle.up {
+    margin-bottom:20px;
+    border-left: 0.8vw solid transparent;
+	border-right:   0.8vw solid transparent;
+    border-bottom: 1.5vw solid #b30; 
+    float: left;
+    
+}
+.triangle {
+	width: 0;
+    height: 0;
+    cursor: pointer;
+}
+.triangle.down {
+    margin-bottom:30px;
+	border-left: 0.8vw solid transparent;
+	border-right:   0.8vw solid transparent;
+    border-top: 1.5vw solid #b30;
+    float: left;
+    margin-left: 2px;
+}
+#opcjeB
+{
+    background-color: #f8ecd5;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#opcjeB>span
+{
+    float: left;
+    font-size: 2vw;
+    
+}
+#opcjeB>select{
+    float: left;
+    font-size: 2vw;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#opcjeB>input
+{
+    display: block;
+    font-size: 2vw;
+    width: 2vw;
+    height: 2vw;
+     float: left;
+     margin-right: 20px;
+}
+#egzaminyGrid{
+  display: grid;
+  grid-template-columns: auto auto auto ;
+  grid-gap: 1vw;
+  background-color:  #C3D1A3;
+  padding: 1vw;
+  border-radius: 30px;
+}
+.egzaminyGridItem
+{
+    width: 28vw;
+    /*height: 28vw;*/
+    background-color: #f8ecd5;
+    border-radius: 30px;
+    border-style: solid;
+}
+.egzaminyGridItem>h1{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ margin-bottom: 2vw;
+ margin-top: 2vw;
+ font-size: 2vw;
+}
+.egzaminyGridItem>table
+{
+    
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    font-size: 1vw;
+margin-bottom: 1vw;
+}
+.egzaminyGridItem>table>tbody>tr>td{
+    padding-bottom: 0.2vw;
+    
+}
+.egzaminyGridItem>span
+{
+font-size: 2vw;
+margin-left: 30px;
+float: left;
+}
+.statusE
+{
+    font-size: 2.2vw;
+    float: left;
+    margin-left: 2vw;
+    color: #ff0000;
+}
+
+.egzaminyGridItem_uczen
+{
+    width: 28vw;
+   /* height: 23vw;*/
+    background-color: #f8ecd5;
+    border-radius: 30px;
+    border-style: solid;
+}
+.egzaminyGridItem_uczen>h1{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ margin-bottom: 2vw;
+ margin-top: 2vw;
+ font-size: 2vw;
+}
+.egzaminyGridItem_uczen>table
+{
+    width: 90%;
+    margin-left: 0;
+    text-align: center;
+    font-size: 1vw;
+margin-bottom: 1vw;
+}
+.egzaminyGridItem_uczen>table>tbody>tr>td{
+    padding-bottom: 0.2vw;
+    
+}
+.egzaminyGridItem_uczen>span
+{
+font-size: 2vw;
+margin-left: 30px;
+float: left;
+}
+.wyniki2{
+    margin: auto;
+    width:60vw;
+    text-align: center;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    margin-top: 20px;
+}
+.tabelaWyniki
+{
+    width: 50vw;
+    margin: auto;
+    text-align: center;
+    background-color: #C3D1A3;
+    font-size: 20px;
+}
+.tabelaWyniki>thead>tr
+{
+    background-color: #fff4e1;
 }

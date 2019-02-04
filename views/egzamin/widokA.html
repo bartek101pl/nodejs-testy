@@ -1,15 +1,19 @@
+<!--@Copyright 2018 BŚ-->
 <html lang="pl">
     <head>
-        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
-        <title>Klasa</title>
+            <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Egzaminy widok</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script src="/socket.io/socket.io.js"></script>
+        <script type='text/javascript' src="/js/pytanieClass.js"></script>
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="/js/klasy/widokKlasy.js"></script>
+        <script type="text/javascript" src="/js/egzamin/showEgzaminy.js"></script>
     </head>
     <body>
-        <div class="body disable">
+        
+        <div class="body" >
                 <div class="nav">
                         <ol>
                             <li><a href="/admin">Strona główna</a></li>
@@ -55,58 +59,45 @@
                         </ol>
                     
                     </div>
-            <div class="cTest">
-                <div class="titleC">Widok klasy:  &quot;<span id="nazwaKlasy"></span>&quot; | Ilość uczniów: <span id="iloscUczniow"></span></div>
-                <hr>
-                <div class="content">
-                        <button id="addUczen" class="button_to_do">Dodaj ucznia</button>
-                        <button id="to_check" class="button_to_do">Wyniki z testów</button>
-                        <button id="to_check" class="button_to_do">Rozpocznij test</button>
-                        <button id="to_check" class="button_to_do">Archiwizuj</button>
-                    <div style="font-size:40px; text-align:center;">Uczniowie w klasie</div>
-                    <table style="width:100%; background-color: #C3D1A3;" border="solid" padding="5px;">
+                <div class="titleC" style="width:90%; margin:auto;">Aktualne egzaminy
+                        <hr>
                         
-                        <thead style="text-align:center;">
-                            <tr>
-                                <td style="width:1%;">Lp.</td>
-                                <td style="width:25%;">Imie i Nazwisko Ucznia</td>
-                                <td style="width:8%;">Ilość testów</td>
-                                <td style="width:20%;" colspan="2" style="text-align:center;">Opcje</td>
-                            </tr>
-                        </thead>
-                        <tbody id="testTable">
-                        </tbody>
-                    </table>
                 </div>
-            </div>
-            <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>  
+                
+            <div id="contener" style="width:90vw; margin:auto;">
+                <div id="egzaminyGrid">
+                    
+                </div>
+                
         </div>
-  
- <div class="background " ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        <div  class="backgroundTekst">Wczytywanie danych</div>
-    </div>   
-</body>
-<script>
-
-        $(document).ready(function() {
-        var NavY = $('.nav').offset().top;
-         
-        var stickyNav = function(){
-        var ScrollY = $(window).scrollTop();
-              
-        if (ScrollY > NavY) { 
-            $('.nav').addClass('sticky');
-        } else {
-            $('.nav').removeClass('sticky'); 
-        }
-        };
-         
-        stickyNav();
-         
-        $(window).scroll(function() {
-            stickyNav();
-        });
-        });
         
-    </script>
+        <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
+        </div>
+        <div class="background disable" ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div  class="backgroundTekst">Wczytywanie danych</div>
+    </div> 
+    </body>
+    <script>
+
+            $(document).ready(function() {
+            var NavY = $('.nav').offset().top;
+             
+            var stickyNav = function(){
+            var ScrollY = $(window).scrollTop();
+                  
+            if (ScrollY > NavY) { 
+                $('.nav').addClass('sticky');
+            } else {
+                $('.nav').removeClass('sticky'); 
+            }
+            };
+             
+            stickyNav();
+             
+            $(window).scroll(function() {
+                stickyNav();
+            });
+            });
+            
+        </script>
 </html>

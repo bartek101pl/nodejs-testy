@@ -1,22 +1,25 @@
 <!--@Copyright 2018 BŚ-->
 <html lang="pl">
     <head>
-        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
-        <title>Panel ucznia</title>
+            <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Egzaminy widok</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/style.css">
         <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script src="/socket.io/socket.io.js"></script>
+        <script type='text/javascript' src="/js/pytanieClass.js"></script>
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
-        
+        <script type="text/javascript" src="/js/uczen/egzamin/showEgzaminy.js"></script>
     </head>
     <body>
-        <div class="body">
+        
+        <div class="body" >
             <div class="nav">
                 <ol>
                     <li><a href="/profil/uczen">Strona główna</a></li>
                     <li><a href="/profil/uczen/profil">Profil</a>
                         <ul>
-                            <li><a href="/profil/uczen/reset/hasla">Zmiana hasła</a></li>
+                            <li><a href="/profil/uczen/profil/reset/hasla">Zmiana hasła</a></li>
                         </ul>
                     </li>
                     <li><a href="/profil/testy/menu">Testy</a>
@@ -36,9 +39,23 @@
                 </ol>
             
             </div>
-            <div id="content"></div>
+                <div class="titleC" style="width:90%; margin:auto;">Aktualne egzaminy
+                        <hr>
+                        
+                </div>
+                
+            <div id="contener" style="width:90vw; margin:auto;">
+                <div id="egzaminyGrid">
+                    
+                </div>
+                
         </div>
+        
         <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
+        </div>
+        <div class="background disable" ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div  class="backgroundTekst">Wczytywanie danych</div>
+    </div> 
     </body>
     <script>
 
@@ -63,4 +80,4 @@
             });
             
         </script>
-    </html>
+</html>

@@ -56,7 +56,7 @@ window.onload = function(){
 
                 tabela.innerHTML+="<tr><td>"+(a+1)+".</td><td>"+data[a].nazwa+"</td><td>"+data[a].iloscPytan+"</td><td>"+data[a].klasa+"</td><td>"+g+"</td><td>"+
             '<form action="/testy/widok" method="GET"> <button  class="button_to_do" style="float: left; ">Podgląd</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+
-            "</td><td>"+'<form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
+            "</td><td>"+'<form action="/egzamin" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="test_id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<form action="/testy/edycja" method="GET"><button  class="button_to_do" style="float: left; ">Edytuj</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń test</button></div>'+"</td></tr>";
 
@@ -123,7 +123,7 @@ window.onload = function(){
 
                 tabela.innerHTML+="<tr><td>"+(a+1)+".</td><td>"+data[a].nazwa+"</td><td>"+data[a].iloscPytan+"</td><td>"+data[a].klasa+"</td><td>"+g+"</td><td>"+
             '<form action="/testy/widok" method="GET"> <button  class="button_to_do" style="float: left; ">Podgląd</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+
-            "</td><td>"+'<form action="/testy/start" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
+            "</td><td>"+'<form action="/egzamin" method="GET"><button  class="button_to_do" style="float: left; ">Rozpocznij test</button><input type="number" name="test_id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<form action="/testy/edycja" method="GET"><button  class="button_to_do" style="float: left; ">Edytuj</button><input type="number" name="id" value="'+data[a].id+'" style="display:none"></form>'+"</td><td>"+
             '<div style="margin-left:0;"><button id="dellB'+a+'" class="button_to_do dellTest" name="'+data[a].id+'" style="float: left; ">Usuń test</button></div>'+"</td></tr>";
 

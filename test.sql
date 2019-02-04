@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Gru 2018, 22:35
+-- Czas generowania: 04 Lut 2019, 17:15
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.3.0
 
@@ -21,6 +21,26 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `test`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `nazwa` text COLLATE utf8_polish_ci NOT NULL,
+  `login` text COLLATE utf8_polish_ci NOT NULL,
+  `haslo` text COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `admin`
+--
+
+INSERT INTO `admin` (`id`, `nazwa`, `login`, `haslo`) VALUES
+(1, 'root', 'root', 'root');
 
 -- --------------------------------------------------------
 
@@ -101,12 +121,20 @@ CREATE TABLE `uczniowie` (
   `id` int(11) NOT NULL,
   `imie` text COLLATE utf8_polish_ci NOT NULL,
   `nazwisko` text COLLATE utf8_polish_ci NOT NULL,
-  `klasa_id` int(11) NOT NULL
+  `klasa_id` int(11) NOT NULL,
+  `haslo` text COLLATE utf8_polish_ci NOT NULL,
+  `login` text COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `klasa`
@@ -133,14 +161,26 @@ ALTER TABLE `testy`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeksy dla tabeli `uczniowie`
+--
+ALTER TABLE `uczniowie`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `klasa`
 --
 ALTER TABLE `klasa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT dla tabeli `opcje`
@@ -152,13 +192,19 @@ ALTER TABLE `opcje`
 -- AUTO_INCREMENT dla tabeli `pytania`
 --
 ALTER TABLE `pytania`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT dla tabeli `testy`
 --
 ALTER TABLE `testy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT dla tabeli `uczniowie`
+--
+ALTER TABLE `uczniowie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

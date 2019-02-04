@@ -18,7 +18,7 @@ const con = mysql.createConnection({
   con.connect(function(err){
       if(err) throw err;
   })
-  router.get("/testy",function(req,res,next){
+router.get("/testy",function(req,res,next){
       res.render("testy");
   })
 router.get("/testy/tworzenie/test",function(req,res,next){

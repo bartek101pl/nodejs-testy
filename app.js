@@ -1,5 +1,5 @@
 //@Copyright 2018 BŚ
-const ver = "0.0.20.9";
+const ver = "0.0.50.0";
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -127,7 +127,7 @@ const testy = require("./routes/testy");
 const klasa = require("./routes/klasy");
 const uczen = require("./routes/uczen");
 const user = require("./routes/user");
-
+const egzamin = require("./routes/egzamin");
 //rendering i wczytywanie testów
 app.get("/",function(req,res,next){
 res.render('socketio');
@@ -137,16 +137,40 @@ app.get("/admin",isLogin,function(req,res){
 res.render("admin");
 })
 //przekierowanie do odpowiedniego routes
-app.get("/profil*",user);
+app.get("/profil*",isUser,user);
 app.get("/testy*",isLogin,testy);
 app.get("/klasa*",isLogin,klasa);
 app.get("/uczen*",isLogin,uczen);
+app.get("/egzamin*",isLogin,egzamin);
 app.post("/testy*",isPerm ,testy);
 app.post("/klasa*",isPerm ,klasa);
 app.post("/uczen*",isPerm ,uczen);
+app.post("/egzamin*",isPerm,egzamin);
 app.post("/profil*",user);
 app.get("/logowanie/admin",function(req,res){
     res.render("logowanie.html");
+});
+app.get("/logowanie/uczen",(req,res)=>{
+    res.render("user/logowanie");
+});
+app.post("/logowanie/uczen",(req,res)=>{
+    let query = "SELECT * FROM `uczniowie` WHERE `haslo`='"+req.body.pass+"' AND `login`='"+req.body.login+"';";
+    con.query(query,(err,data,focus)=>{
+
+        if(data.length > 0)
+        {
+            req.session.isAdmin = false;
+            req.session.isUser = true;
+            req.session.login = true;
+            req.session.userID = data[0].id;
+            req.session.klasaID = data[0].klasa_id;
+            res.redirect("/profil");
+        }else
+        {
+            res.redirect("/profil/logowanie");
+        }
+
+});
 });
 app.post("/logowanie/admin",function(req,res){
 let query = "SELECT * FROM `admin` WHERE `login`='"+req.body.login+"' AND `haslo`='"+req.body.pass+"';";
@@ -171,6 +195,8 @@ app.get("/wyloguj/admin",(req,res)=>{
 app.get("/wyloguj/uczen",(req,res)=>{
     req.session.isUser = false
     req.session.login = false
+    req.session.userID = null;
+    req.session.klasaID = null;
     res.redirect("/");
 });
 //socket.io
@@ -181,10 +207,25 @@ app.get("/wyloguj/uczen",(req,res)=>{
   http.listen(app.get('port'),function(){
     console.log('Serwer Express nasłuchuje na porcie : http:192.168.0.100:'+app.get('port'));
 });
-
+app.post("/get/my/klasa/id",(req,res)=>{
+if(req.session.isUser)
+{
+    res.json({klasaID : req.session.klasaID});
+}else{
+    res.json({klasaID : null});
+}
+});
+app.post("/get/my/uczen/id",(req,res)=>{
+    if(req.session.isUser)
+    {
+        res.json({klasaID : req.session.userID});
+    }else{
+        res.json({klasaID : null});
+    }
+    });
 app.get("/img",(req,res)=>{
 let data = parseURLParams(req.url);
-res.sendfile("public/img/"+data.id[0]);
+res.sendfile(__dirname+"/public/img/"+data.id[0]);
 });
 
 //odpowiedzialne za wyświetlenie wersji oprogramowania

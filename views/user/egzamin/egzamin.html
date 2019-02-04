@@ -1,0 +1,59 @@
+<!--@Copyright 2018 BŚ-->
+<html lang="pl">
+    <head>
+        <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script type="text/javascript" src="/js/pytanieClass.js"></script>
+        <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type='text/javascript' src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/js/select.js"></script>
+    </head>
+    <body>
+            <div class="body2 disable">
+        <div style="width:100%;text-align:center;">
+            <span class="heder" >Test:<span id="temat"></span> </span>
+        </div>
+        
+        <div class="body">
+            <div id="heder">
+            <div class="boxs">
+                <ol class="boxss" id="lista_P">
+                    
+                    
+                </ol>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="margin: auto;width:55vw; margin-top: 10px;"><span style="font-size: 20px; background-color: rgb(7, 197, 7);color: rgb(7, 197, 7);">&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+                <b>Udzielono odpowiedzi</b>
+                <span style=" margin-left:10px; font-size: 20px; background-color: rgb(228, 158, 7);color: rgb(228, 158, 7);">&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+                <b>Do sprawdzenia</b>
+                <button id="to_check" class="button_to_do">Do sprawdzenia</button>
+                
+            </div>
+            </div>
+            <div class="wyniki2 disable">
+                <h3>Wyniki:</h3>
+                <h2>Zdobyłeś <span id="p_zdobyte">0</span> z <span id="p_dozdobycia">40</span>, <sapn id="p_procent"></sapn></h2>
+                <button id="to_show" style="float: left; margin-left: 30px; margin-bottom: 10px;" class="button_to_do ">Widok pytań</button>
+                <button id="to_new" style="float: left; margin-left: 30px; margin-bottom: 10px;" class="button_to_do ">Nowy test</button>
+                <div style="clear: both;"></div>
+            </div>
+            <div id="pytania_box">
+            
+            </div>
+            <button id="to_end" style="float: right; margin-right: 22vw; margin-top: 10px;" class="button_to_do disable">Koniec testu</button>
+            <button id="to_next" style="float: right; margin-right: 22vw; margin-top: 10px;" class="button_to_do ">Dalej</button>
+            <button id="to_back" style="float: left; margin-left: 22vw; margin-top: 10px;" class="button_to_do ">Cofnij</button>
+                <div style="clear: both;"></div>
+        </div>
+        <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
+    </div>
+    <div class="background" ><div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div  class="backgroundTekst" id="status">Wczytywanie danych</div>
+    </div> 
+        </body>
+    </body>
+</html>

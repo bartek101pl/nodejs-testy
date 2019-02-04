@@ -1,3 +1,4 @@
+//@Copyright 2018 BŚ
 window.onload = ()=>{
     const tabela = document.getElementById("testTable");
     load_data();
@@ -69,14 +70,14 @@ window.onload = ()=>{
                 if(data.status =="true")
                 {
     
-                    
+                    load_data(); 
                    // new Promise(()=>{alert("Test został usunięty pomyślnie : "+data.data);}); 
                 }
+                else{
+                    alert("Coś poszło nie tak!");
+                }
                 //console.log(data);
-            } ).then(()=>{ 
-                
-                   load_data(); 
-            });
+            } )
         }
     }
     $("#utworz").on("click",()=>{

@@ -1,0 +1,161 @@
+<!--@Copyright 2018 BŚ-->
+<html lang="pl">
+    <head>
+            <link rel="Shortcut icon" href="/img/ico/testy-logiczne.ico" />
+        <title>Przygotowywanie egzaminu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta http-equiv="Content-Type", content="text/html; charset=utf-8">
+        <script type='text/javascript' src="/js/pytanieClass.js"></script>
+        <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="/js/egzamin/start.js"></script>
+        <script type="text/javascript" src="/js/egzamin/start.js"></script>
+    </head>
+    <body>
+        
+        <div class="body" >
+                <div class="nav">
+                        <ol>
+                            <li><a href="/admin">Strona główna</a></li>
+                            <li><a href="#">Profil</a>
+                                <ul>
+                                    <li><a href="#">Profil</a></li>
+                                    <li><a href="#">Ustawienia</a></li>
+                                    <li><a href="#">Zmiana hasła</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/testy">Testy</a>
+                                <ul>
+                                    
+                                    <li><a href="/testy/tworzenie/test">Dodaj test</a></li>
+                                    <li><a href="/egzamin">Rozpocznij test</a></li>
+                                    <li><a href="/egzamin/widok/wszystkie">Aktualne testy</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/klasa">Klasy</a>
+                                <ul>
+                                    
+                                    <li><a href="/klasa/dodaj/klasa">Dodaj klase</a></li>
+                                    <li><a href="#">Archiwizuj klase</a></li>
+                                    <li><a href="#">Wyniki Klas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Archiwum</a>
+                                <ul>
+                                    <li><a href="#">Testy</a></li>
+                                    <li><a href="#">Klasy</a></li>
+                                    <li><a href="#">Uczniowie</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Ustawienia</a>
+                                <ul>
+                                    <li><a href="#">Platformy</a></li>
+                                    <li><a href="#">Testów</a></li>
+                                    <li><a href="#">Administratorzy</a></li>
+                                    <li><a href="#">Strona ucznia</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/wyloguj/admin">Wyloguj</a></li>
+                        </ol>
+                    
+                    </div>
+                <div class="titleC" style="width:90%; margin:auto;">Przygotowywanie egzaminu
+                        <hr>
+                        
+                </div>
+                
+            <div id="contener" style="width:90vw; margin:auto;">
+                <div style="font-size:40px; text-align:center;">Klasy&nbsp;<span id="selectK"></span></div>
+                <hr style="float: right; width: 81vw;margin-bottom:40px; margin-top: 15px;">
+                <hr style="float: left; width: 7vw;margin-bottom:40px; margin-top: 15px;">
+                <div class="triangle down" id="showKlasa"></div>
+            <div style="clear:both"></div>
+
+                <div id="klasyB">
+                
+                    <table style="width:100%; background-color: #C3D1A3;" border="solid" padding="5px;"class="tabelaH">
+                        
+                        <thead style="text-align:center;" >
+                            <tr>
+                                <td style="width:1%;">Lp.</td>
+                                <td style="width:30%;">Nazwa klasy</td>
+                                <td style="width:2%;">Iloć uczniów</td>
+                                <td style="width:8%;">Data utworzenia</td>
+                                <td style="width:10%;"  style="text-align:center;">Opcje</td>
+                            </tr>
+                        </thead>
+                        <tbody class="tabela" id="klasaTable">
+                        </tbody>
+                    </table>
+                </div>
+                <div style="font-size:40px; text-align:center; margin-top: 30px;">Testy&nbsp;<span id="selectT"></span></div>
+                <hr style="float: right; width: 81vw;margin-bottom:40px; margin-top: 15px;">
+                <hr style="float: left; width: 7vw;margin-bottom:40px; margin-top: 15px;">
+                <div class="triangle down  " id="showTest"></div>
+                <div id="testyB" >
+                <table style="width:100%; background-color: #C3D1A3;" border="solid" padding="5px;" class="tabelaH">
+                    
+                    <thead style="text-align:center;">
+                        <tr>
+                            <td style="width:1%;">Lp.</td>
+                            <td style="width:25%;">Nazwa</td>
+                            <td style="width:1%;">Iloć pytań</td>
+                            <td style="width:1%;">Klasa</td>
+                            <td style="width:8%;">Data utworzenia</td>
+                            <td style="width:10%;"  style="text-align:center;">Opcje</td>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela" id="testTable" >
+                    </tbody>
+                </table></div>
+
+                <div style="font-size:40px; text-align:center; margin-top: 30px;">Opcje testu&nbsp;<span id="selectO"></span></div>
+                <hr style="float: right; width: 81vw;margin-bottom:40px; margin-top: 15px;">
+                <hr style="float: left; width: 7vw;margin-bottom:40px; margin-top: 15px;">
+                <div class="triangle down  " id="showOpcje"></div>
+                <div style="clear:both"></div>
+                <div id="opcjeB" >
+                    <span>Ilość pytań: </span><select  id="opcje">
+                        
+                    </select>
+                    <span>Zapisać wyniki: </span> <input type="checkbox" id="saveW">
+                    <span>Tryb gości: </span><input type="checkbox" id="goscT">
+                    <div style="clear:both"></div>
+                    <hr style="margin:20px 0 20px;">
+                    <span>Synchornizacja rozpoczęcia testu: </span><input type="checkbox" checked="checked" id="synch">
+                    <span>Czas testu (minuty): </span><input type="number" style="width: 100px;margin-top: 5px;" value="15"id="time">
+                    <div style="clear:both"></div>
+                    <button class="button_to_do" id="zmianaS"style="margin-top:1vw;margin-bottom:1vw;">Zatwierdz zmiany</button>
+                </div>
+            <div style="clear:both"></div>
+            <button class="button_to_do " id="start"style="margin-top:1vw;margin-bottom:1vw;"  >Rozpocznij test</button>
+        </div>
+        
+        <div style="text-align:center;margin-top:20px;margin-bottom:20px;">&copy; Copyright 2018 BŚ</div>
+        </div>
+        
+    </body>
+    <script>
+
+            $(document).ready(function() {
+            var NavY = $('.nav').offset().top;
+             
+            var stickyNav = function(){
+            var ScrollY = $(window).scrollTop();
+                  
+            if (ScrollY > NavY) { 
+                $('.nav').addClass('sticky');
+            } else {
+                $('.nav').removeClass('sticky'); 
+            }
+            };
+             
+            stickyNav();
+             
+            $(window).scroll(function() {
+                stickyNav();
+            });
+            });
+            
+        </script>
+</html>

@@ -1,12 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
-const http = require('http')
-const path = require('path');
 const mysql = require('mysql');
-const bodyParser = require('body-parser');
-let idDodawanejKLasy = 0;
-let addIsEnable = false;
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
