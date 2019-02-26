@@ -10,7 +10,7 @@ window.onload = function()
                // console.log(data);
                 if(data.length==0)
                 {
-                    var Today = new Date();
+                var Today = new Date();
         var Month = Today.getMonth()+1;
         var Day = Today.getDate();
         var Year = Today.getFullYear();

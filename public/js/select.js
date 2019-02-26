@@ -277,7 +277,7 @@ $(".wyniki2").removeClass("disable");
 $("#to_show").on("click",()=>$(".pytanieBody").removeClass("disable"))
 //console.log(wynik);
 //console.log({egzaminID : parseInt(egzaminID),uczenID:uczenID,odpowiedzi:odpowiedzi,punktyZ:wynik,punktyM:test.pytania.length})
-$.post("/egzamin/save/egzamin",{egzaminID : parseInt(egzaminID),uczenID:uczenID,odpowiedzi:odpowiedzi,punktyZ:wynik,punktyM:test.pytania.length},(data)=>{
+$.post("/egzamin/save/egzamin",{data :JSON.stringify({egzaminID : parseInt(egzaminID),uczenID:uczenID,odpowiedzi:odpowiedzi,punktyZ:wynik,punktyM:test.pytania.length})},(data)=>{
 if(data.status == "false")
 alert("Coś poszło nie tak")
 });

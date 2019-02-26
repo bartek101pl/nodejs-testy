@@ -9,7 +9,7 @@
         <script src="/socket.io/socket.io.js"></script>
         <script type='text/javascript' src="/js/pytanieClass.js"></script>
         <script type='text/javascript' src="/js/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="/js/uczen/egzamin/showEgzaminy.js"></script>
+        <script type="text/javascript" src="/js/egzamin/uczenWyniki.js"></script>
     </head>
     <body>
         
@@ -39,15 +39,23 @@
                 </ol>
             
             </div>
-                <div class="titleC" style="width:90%; margin:auto;">Aktualne egzaminy
+                <div class="titleC" style="width:90%; margin:auto;">Egzaminy
                         <hr>
                         
                 </div>
                 
             <div id="contener" style="width:90vw; margin:auto;">
-                <div id="egzaminyGrid">
-                    
-                </div>
+                <table class="tabelaWyniki" style="width: 60vw;" border="solid">
+                    <thead>
+                        <tr>
+                            <td style="width:2%;">Lp.</td>
+                            <td>Nazwa testu</td>
+                            <td colspan="2"style="width:30%;" >Twoje wyniki (Klasy)</td>
+                            <td style="width:20%;" >Widok odpowiedzi</td>
+                        </tr>
+                    </thead>
+                    <tbody id="wyniki"></tbody>
+                </table>
                 
         </div>
         

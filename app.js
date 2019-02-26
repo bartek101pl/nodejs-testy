@@ -111,6 +111,14 @@ var isPerm = function(req,res,next){
         res.json({status: "false"});
     }
 };
+var isGhost = function(req,res,next)
+{
+if(req.session.isGhost&& req.session.isGhost == true && req.session.ghostName !="")
+return next();
+else
+res.json({status: "false"});
+};
+
 //app.use sekcja dodawanie funkcji do serwera
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 9999009 } }));
@@ -146,6 +154,7 @@ app.post("/testy*",isPerm ,testy);
 app.post("/klasa*",isPerm ,klasa);
 app.post("/uczen*",isPerm ,uczen);
 app.post("/egzamin*",isPerm,egzamin);
+app.post("/not/user/egzamin*",isGhost,egzamin);
 app.post("/profil*",user);
 app.get("/logowanie/admin",function(req,res){
     res.render("logowanie.html");
@@ -158,16 +167,26 @@ app.post("/logowanie/uczen",(req,res)=>{
     con.query(query,(err,data,focus)=>{
 
         if(data.length > 0)
-        {
-            req.session.isAdmin = false;
-            req.session.isUser = true;
-            req.session.login = true;
-            req.session.userID = data[0].id;
-            req.session.klasaID = data[0].klasa_id;
+        {   for(let a =0;a<data.length;a++)
+            {//console.log(data[a].login+"=="+req.body.login+"&&"+data[a].haslo+"=="+ req.body.pass)
+                if((data[a].login == req.body.login) && (data[a].haslo == req.body.pass))
+                {
+                    //console.log(data[a].login+"=="+req.body.login+"&&"+data[a].haslo+"=="+ req.body.pass)
+                    req.session.isAdmin = false;
+                    req.session.isUser = true;
+                    req.session.login = true;
+                    req.session.userID = data[a].id;
+                    req.session.klasaID = data[a].klasa_id;
+                    break;
+                }
+            }
+            if(req.session.isUser == true&&req.session.login == true)
             res.redirect("/profil");
+            else
+            res.redirect("/logowanie/uczen");
         }else
         {
-            res.redirect("/profil/logowanie");
+            res.redirect("/logowanie/uczen");
         }
 
 });

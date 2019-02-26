@@ -28,26 +28,8 @@ router.get("/profil/logowanie",(req,res)=>{
 router.get("/profil/testy/menu",(req,res)=>{
 res.render("user/egzamin/widokA");
 });
-router.get("/profil/testy/uczen",(req,res)=>{
-    res.render("user/egzamin/egzamin");
+router.get("/profil/testy/wyniki",(req,res)=>{
+    res.render("user/egzamin/wynikiAll");
     });
-router.post("/profil/logowanie",(req,res)=>{
-    let query = "SELECT * FROM `uczniowie` WHERE `haslo`='"+req.body.pass+"' AND `login`='"+req.body.login+"';";
-    con.query(query,(err,data,focus)=>{
 
-        if(data.length > 0)
-        {
-            req.session.isAdmin = false;
-            req.session.isUser = true;
-            req.session.login = true;
-            req.session.userID = data[0].id;
-            req.session.klasaID = data[0].klasa_id;
-            res.redirect("/profil");
-        }else
-        {
-            res.redirect("/profil/logowanie");
-        }
-
-});
-});
   module.exports = router;

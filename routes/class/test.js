@@ -13,5 +13,6 @@ module.exports = class BodyTest{
         this.status = status;
         this.pytania = [];
         this.load = 0;
+        this.mysql_ID;
     }
 }

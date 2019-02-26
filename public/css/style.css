@@ -669,3 +669,4 @@ float: left;
 {
     background-color: #fff4e1;
 }
+.tabelaWyniki>tbody>tr:nth-child(even) { background-color:#fff4e1; }
